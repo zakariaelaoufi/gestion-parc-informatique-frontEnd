@@ -1,0 +1,143 @@
+:root {
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* font-family: "Inter", sans-serif; */
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+  padding: 10px 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey; */
+  border-radius: 30px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(89, 95, 132, 0.379);
+  border-radius: 30px;
+}
+/******************************/
+@media print {
+  @page {
+    size: auto;
+    margin: 16mm 14mm;
+  }
+
+  /* @page :footer {
+    display: none !important;
+  }
+
+  @page :header {
+    display: none !important;
+  } */
+  div {
+    break-inside: avoid;
+  }
+}
+
+/*********** Data Grid **********/
+.MuiDataGrid-root .MuiDataGrid-columnHeaders {
+  /* background: #24242422; */
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+  margin-bottom: 10px;
+  transition: 1s all ease-in-out;
+}
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+  font-weight: bold;
+  transform: scale(1.1);
+  padding: 0 10px;
+}
+.MuiDataGrid-root .MuiDataGrid-toolbarContainer {
+  /* background-color: #00217baa; */
+  padding: 22px 15px;
+  margin: auto 12px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  align-items: center;
+  gap: 35px;
+}
+.MuiDataGrid-root .MuiDataGrid-toolbarContainer .MuiInputBase-root {
+  /* background-color: rgba(255, 0, 149, 0.164); */
+  padding: 5px 10px;
+  display: flex;
+  gap: 20px;
+  /* margin-top: -100px; */
+  margin-left: -12px;
+}
+.custome-drawer .MuiModal-backdrop {
+  background-color: #37373722 !important;
+}
+
+.MuiButton-contained,
+.MuiButtonBase-root {
+  box-shadow: none !important;
+  text-transform: capitalize !important;
+  opacity: 0.95;
+}
+
+.css-1vuxth3-MuiBarElement-root,
+.MuiChartsLegend-mark {
+  fill: #879fff !important;
+}
+
+/******************************/
+/* 
+.MuiFormLabel-root , .MuiInputBase-root{
+  background-color: #fff !important;
+}
+
+
+ */
+/* 
+ .MuiBackdrop-root{
+  background: rgba(0, 0, 0, 0.1);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+ } */
+
+/*************** table *************************/
+.table-style {
+  box-shadow: none;
+  border: 1px solid #88888855;
+}
+
+.table-style th,
+.table-style-2 th {
+  font-weight: bold;
+}
+
+.table-style td,
+.table-style th {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.table-style-1 td,
+.table-style-1 th {
+  border-left: 1px solid #88888855;
+  border-right: 1px solid #88888855;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
