@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useGetAllFournisseur } from "../api/useFournisseurApi";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-function useSelectFournisseur() {
-  const [fournisseur, setFournisseur] = useState(-1);
+function useSelectFournisseur({ idFournisseurUpdate = -1 }) {
+  const [fournisseur, setFournisseur] = useState(idFournisseurUpdate);
   const allFournisseur = useGetAllFournisseur();
   const handleChange = (event) => {
     setFournisseur(event.target.value);

@@ -5,6 +5,7 @@ import {
   downloadImage,
   getAllProduit,
   getProduitById,
+  updateProduit,
   uploadImage,
 } from "../../APIs/api_produit";
 ("../../APIs/api_fournisseur");
@@ -43,6 +44,21 @@ export const useCreateProduit = ({ onSuccess, onError } = {}) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["allProduit"] });
       onSuccess && onSuccess();
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useUpdateProduit = ({ onSuccess, onError, idProduit } = {}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (formData) => updateProduit(formData, idProduit),
+    onSuccess: () => {
+      onSuccess && onSuccess();
+      queryClient.invalidateQueries({ queryKey: ["allProduit"] });
     },
     onError: () => {
       onError && onError();

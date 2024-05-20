@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useGetAllCategorie } from "../api/useCategorieApi";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-function useSelectCategorie() {
-  const [Categorie, setCategorie] = useState(-1);
+function useSelectCategorie({ idCategorieUpdate = -1 }) {
+  const [Categorie, setCategorie] = useState(idCategorieUpdate);
   const allCategorie = useGetAllCategorie();
   const handleChange = (event) => {
     setCategorie(event.target.value);

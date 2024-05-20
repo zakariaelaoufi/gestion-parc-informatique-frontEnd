@@ -6,7 +6,6 @@ import { ListUtiliasateurPage } from "../pages/dashboard/Utilisateur";
 // import UserManagement2 from "../pages/dashboard/administration/__user-management";
 // import Marche from "../pages/dashboard/marche";
 import { CreateSupplierPage } from "../pages/dashboard/supplier";
-import { DecomptePage } from "../pages/dashboard/attachment";
 
 /********** icons ************/
 import BroadcastOnHomeIcon from "@mui/icons-material/BroadcastOnHome";
@@ -21,7 +20,7 @@ import { ListFournisseurPage } from "../pages/dashboard/Fournisseur";
 import {
   CreateProduitPage,
   ListProduitPage,
-  TestPage,
+  UpdateProduitPage,
 } from "../pages/dashboard/produit";
 import {
   GenereBarCodePage,
@@ -53,11 +52,18 @@ export const MenuData = [
         permissions: [user_role.BO],
       },
       {
+        name: "update produit",
+        path: "updtae-produit",
+        component: <UpdateProduitPage />,
+        permissions: [user_role.BO],
+      },
+      {
         name: "Liste produit",
         path: "list-produit",
         component: <ListProduitPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
+
       {
         name: "Categorie",
         path: "categories",
@@ -101,13 +107,6 @@ export const MenuData = [
         name: "Recuperation",
         path: "recuperation",
         component: <RecupererPage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
-
-      {
-        name: "GGGG",
-        path: "decompte",
-        component: <TestPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
     ],

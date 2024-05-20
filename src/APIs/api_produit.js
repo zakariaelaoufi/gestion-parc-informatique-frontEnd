@@ -22,6 +22,15 @@ export const createProduit = async (formData) => {
   });
 };
 
+export const updateProduit = async (formData, idProduit) => {
+  const url = `/produits/${idProduit}`;
+  return await axios.put(url, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
 export const deleteProduit = async (idProduit) => {
   const url = `/produits/${idProduit}`;
   return await axios.delete(url);

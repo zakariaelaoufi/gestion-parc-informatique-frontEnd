@@ -21,6 +21,28 @@ export default function useAllProduit() {
   console.log("rows ---->", rows);
   const columns = [
     {
+      field: "img",
+      headerName: "Image",
+      flex: 2,
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <img
+            // src={params.row.img}
+            src={`${serverIMG}/${params.row.imageURL}`}
+            alt="img"
+            style={{
+              width: "60px",
+              height: "px",
+              objectFit: "contain",
+              borderRadius: "5px",
+              padding: "2px",
+            }}
+          />
+        );
+      },
+    },
+    {
       field: "nomProduit",
       headerName: "Nom",
       flex: 2,
@@ -34,22 +56,6 @@ export default function useAllProduit() {
           >
             <DeatailProduit idProduit={params.row.idProduit} />
           </Drawer>
-        );
-      },
-    },
-    {
-      field: "img",
-      headerName: "Image",
-      flex: 2,
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <img
-            // src={params.row.img}
-            src={`${serverIMG}/${params.row.imageURL}`}
-            alt="img"
-            style={{ width: "50px", height: "px" }}
-          />
         );
       },
     },

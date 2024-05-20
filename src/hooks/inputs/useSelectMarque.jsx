@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useGetAllMarque } from "../api/useMarqueApi";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-function useSelectMarque() {
-  const [Marque, setMarque] = useState(-1);
+function useSelectMarque({ idMarqueUpdate = -1 }) {
+  const [Marque, setMarque] = useState(idMarqueUpdate);
   const allMarque = useGetAllMarque();
   const handleChange = (event) => {
     setMarque(event.target.value);

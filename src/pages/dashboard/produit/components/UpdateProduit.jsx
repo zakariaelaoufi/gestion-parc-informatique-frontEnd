@@ -1,46 +1,51 @@
-import { Alert, Box, Button, TextField, Typography } from "@mui/material";
-import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import { useForm } from "react-hook-form";
-import ImageUpload from "../../../components/ImageImport/ImageUpload";
-import useSelectFournisseur from "../../../hooks/inputs/useSelectFournisseur";
-import useSelectMarque from "../../../hooks/inputs/useSelectMarque";
-import useSelectCategorie from "../../../hooks/inputs/useSelectCategorie";
+import ImageUpload from "../../../../components/ImageImport/ImageUpload";
+import useSelectCategorie from "../../../../hooks/inputs/useSelectCategorie";
+import useSelectFournisseur from "../../../../hooks/inputs/useSelectFournisseur";
+import useSelectMarque from "../../../../hooks/inputs/useSelectMarque";
+import { useUpdateProduit } from "../../../../hooks/api/useProduitApi";
 import { useState } from "react";
-import { useCreateProduit } from "../../../hooks/api/useProduitApi";
-import { useNavigate } from "react-router-dom";
-import useUploadDataXlsx from "../../../hooks/utils/useUploadDataXlsx";
+import { Alert, Box, Button, TextField } from "@mui/material";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
-export default function CreateProduit() {
+export default function UpdateProduit({ ProduitData = [] }) {
+  const [error, setErrors] = useState("");
+  const [image, setImage] = useState(null);
+
+  const { selectFournisseurHTML, fournisseur } = useSelectFournisseur({
+    idFournisseurUpdate: ProduitData?.fournisseur?.idFournisseur,
+  });
+  const { selectMarqueHTML, Marque } = useSelectMarque({
+    idMarqueUpdate: ProduitData?.marqueID,
+  });
+  const { selectCategorieHTML, Categorie } = useSelectCategorie({
+    idCategorieUpdate: ProduitData?.catrgorieID,
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
-
-  const { dataExcel = [], UploadButton } = useUploadDataXlsx();
-
-  const [image, setImage] = useState(null);
-  const [error, setErrors] = useState("");
-  const navigate = useNavigate();
-
-  const { selectFournisseurHTML, fournisseur } = useSelectFournisseur(-1);
-  const { selectMarqueHTML, Marque } = useSelectMarque(-1);
-  const { selectCategorieHTML, Categorie } = useSelectCategorie(-1);
-  const [quantite, setQuantite] = useState(0);
-
-  const mutationCreate = useCreateProduit({
-    onSuccess: () => {
-      navigate("/dashboard/produits/list-produit");
-    },
-    onError: () => {
-      setErrors("vérifiez vos informations");
+  } = useForm({
+    defaultValues: {
+      nomProduit: ProduitData?.nomProduit,
+      description: ProduitData?.description,
+      prix: ProduitData?.prix,
+      delai: ProduitData?.delai || "",
+      dateLivraison: ProduitData?.dateLivraison || "",
     },
   });
 
+  const mutationUpload = useUpdateProduit({
+    onError: () => {
+      setErrors("vérifiez vos informations");
+    },
+    idProduit: ProduitData?.idProduit || -1,
+  });
+
   const onSubmit = (data) => {
-    const datos = dataExcel.map((e) => e[0]);
     const obj = {
-      produit: { ...data },
+      produit: { ...data, imageURL: ProduitData?.imageURL },
       fournisseur: {
         idFournisseur: fournisseur,
       },
@@ -50,23 +55,17 @@ export default function CreateProduit() {
       categorie: {
         idCategorie: Categorie,
       },
-      quantite: quantite,
-      numeroSerie: datos,
     };
-
-    if (!dataExcel || dataExcel.length !== parseInt(quantite)) {
-      setErrors(
-        "Quantité invalide. La quantité doit être égale au nombre de numéros de série dans le fichier."
-      );
-    } else if (fournisseur && Marque && Categorie) {
+    if (fournisseur && Marque && Categorie) {
+      console.log(obj, "obj");
       const formData = new FormData();
       formData.append("data", JSON.stringify(obj));
       if (image) {
         formData.append("file", image);
       } else {
-        formData.append("file", new Blob()); // Add an empty Blob if no image is present
+        formData.append("file", new Blob());
       }
-      mutationCreate.mutate(formData);
+      mutationUpload.mutate(formData);
     } else {
       setErrors("vérifiez vos informations");
     }
@@ -84,25 +83,39 @@ export default function CreateProduit() {
           },
         }}
       >
-        <Typography
-          component="h2"
-          variant="h5"
-          sx={{
-            mt: 2,
-            mb: 6,
-            fontWeight: 700,
-            borderLeft: "4px solid",
-            borderLeftColor: "primary.main",
-            pl: 2,
-          }}
-        >
-          Créer un produit
-        </Typography>
+        <Box>
+          {errors.nomProduit && (
+            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
+              {errors.nomProduit.message}
+            </Alert>
+          )}
+          {errors.prix && (
+            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
+              {errors.prix.message}
+            </Alert>
+          )}
+          {errors.dateLivraison && (
+            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
+              {errors.dateLivraison.message}
+            </Alert>
+          )}
+          {errors.delai && (
+            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
+              {errors.delai.message}
+            </Alert>
+          )}
+          {errors.description && (
+            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
+              {errors.description.message}
+            </Alert>
+          )}
+        </Box>
         <Box
           sx={{
             display: "flex",
             justifyContent: "Start",
             alignItems: "start",
+            mt: 3,
           }}
         >
           <Box
@@ -147,11 +160,12 @@ export default function CreateProduit() {
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3, mt: 2 }}>
               <TextField
+                type="text"
                 fullWidth
                 label="Quantité"
                 variant="outlined"
-                type="number"
-                onChange={(e) => setQuantite(e.target.value)}
+                value={ProduitData?.totalPiece}
+                disabled
               />
               <Box width={1}>{selectFournisseurHTML}</Box>
             </Box>
@@ -176,10 +190,10 @@ export default function CreateProduit() {
               <TextField
                 type="text"
                 fullWidth
-                label="Délai de garentie"
+                label="Délai de garantie"
                 variant="outlined"
                 {...register("delai", {
-                  required: "Le delai de garentie est obligatoire",
+                  required: "Le délai de garantie est obligatoire",
                 })}
               />
             </Box>
@@ -198,6 +212,18 @@ export default function CreateProduit() {
               />
             </Box>
             <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                my: 4,
+              }}
+            >
+              <ImageUpload
+                imageURL={ProduitData?.imageURL}
+                onImageUpload={setImage}
+              />
+            </Box>
+            <Box
               sx={{ display: "flex", justifyContent: "left", gap: 2, my: 2 }}
             >
               <Button
@@ -206,58 +232,11 @@ export default function CreateProduit() {
                 color="secondary"
                 size="large"
                 sx={{ p: 1.5 }}
-                endIcon={<PlaylistAddRoundedIcon />}
+                endIcon={<EditNoteIcon />}
               >
-                Créer Produit
+                Update Produit
               </Button>
             </Box>
-          </Box>
-
-          <Box>
-            {/* Image upload */}
-            <ImageUpload imageURL={null} onImageUpload={setImage} />
-            <Box>
-              {UploadButton(
-                { mt: 2, mb: 1, p: 1, width: "100%" },
-                "Importer les numéros de série"
-              )}
-            </Box>
-            {dataExcel && dataExcel.length > 0 && (
-              <Alert severity="success" sx={{ mt: 1, mb: 1 }}>
-                {dataExcel.length} numéros de série importés avec succès
-              </Alert>
-            )}
-            {/* Errors */}
-            {errors.nomProduit && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.nomProduit.message}
-              </Alert>
-            )}
-            {errors.prix && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.prix.message}
-              </Alert>
-            )}
-            {errors.quantity && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.quantity.message}
-              </Alert>
-            )}
-            {errors.dateLivraison && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.dateLivraison.message}
-              </Alert>
-            )}
-            {errors.delai && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.delai.message}
-              </Alert>
-            )}
-            {errors.description && (
-              <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-                {errors.description.message}
-              </Alert>
-            )}
           </Box>
         </Box>
       </Box>
