@@ -6,6 +6,7 @@ import {
 import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useGetAllNotAvailableAttachment } from "../../../hooks/api/useAttachmentApi";
 
 export default function Recuperer() {
   const location = useLocation();
@@ -18,14 +19,20 @@ export default function Recuperer() {
 
   const navigate = useNavigate();
 
-  const allNotAvailable = useGetAllAvailableAffectation()?.data;
+  const allNotAvailable = useGetAllAvailableAffectation()?.data || [];
+  const allNotAvailable2 = useGetAllNotAvailableAttachment()?.data || [];
+  const all = [...allNotAvailable, ...allNotAvailable2];
+  console.log(all, "all");
+
   const existenceHostname = (hostname) => {
-    return allNotAvailable?.some((inv) => inv.hostname === hostname);
+    return all?.some((inv) => inv.hostname === hostname);
   };
 
   const inventaireInfo = (hostname) => {
-    return allNotAvailable?.find((inv) => inv.hostname === hostname);
+    return all?.find((inv) => inv.hostname === hostname);
   };
+
+  console.log(inventaireInfo("UC.00004"), "inventaireInfo");
 
   const mutationCreate = useUpdateAffectation({
     onSuccess: () => {
@@ -102,6 +109,7 @@ export default function Recuperer() {
             required
             label="Hostname du machine"
             variant="outlined"
+            value={hostname}
             sx={{ mt: 2 }}
             onChange={(e) => setHostname(e.target.value)}
           />
@@ -117,15 +125,17 @@ export default function Recuperer() {
                 value={inventaireInfo(hostname).nomMachine}
                 disabled
               />
-              <TextField
-                fullWidth
-                required
-                label="Hostname"
-                variant="outlined"
-                sx={{ mt: 2 }}
-                value={inventaireInfo(hostname).immatricule}
-                disabled
-              />
+              {inventaireInfo(hostname).immatricule && (
+                <TextField
+                  fullWidth
+                  required
+                  label="Immatricule"
+                  variant="outlined"
+                  sx={{ mt: 2 }}
+                  value={inventaireInfo(hostname).immatricule}
+                  disabled
+                />
+              )}
               <TextField
                 fullWidth
                 required
@@ -138,10 +148,18 @@ export default function Recuperer() {
               <TextField
                 fullWidth
                 required
-                label="Date affectation"
+                label={
+                  inventaireInfo(hostname)?.immatricule
+                    ? "Date affectation"
+                    : "Date attachment"
+                }
                 variant="outlined"
                 sx={{ mt: 2 }}
-                value={inventaireInfo(hostname).dateAffectation}
+                value={
+                  inventaireInfo(hostname)?.dateAffectation ||
+                  inventaireInfo(hostname)?.dateAttachment ||
+                  ""
+                }
                 disabled
               />
               <TextField

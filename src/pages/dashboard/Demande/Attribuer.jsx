@@ -3,8 +3,13 @@ import TabRender from "../../../components/Tab/TabRender";
 import { Box, Typography } from "@mui/material";
 import Demander from "./Demander";
 import Attacher from "./Attacher";
+import { useLocation } from "react-router-dom";
 
 export default function Attribuer() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const host_name = searchParams.get("host_name");
+
   return (
     <>
       <Box>
@@ -19,7 +24,7 @@ export default function Attribuer() {
             px: 1.5,
           }}
         >
-          Imprimer Codebar
+          Attribuer une machine
         </Typography>
 
         <Box
@@ -33,11 +38,11 @@ export default function Attribuer() {
             tabList={[
               {
                 title: "affecter une machine",
-                component: <Demander />,
+                component: <Demander host_name={host_name} />,
               },
               {
                 title: "attacher une machine",
-                component: <Attacher />,
+                component: <Attacher host_name={host_name} />,
               },
             ]}
           />

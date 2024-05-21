@@ -9,7 +9,7 @@ import DetailInventaire from "./DetailInventaire";
 export default function useAllInventaire() {
   const navigate = useNavigate();
   const handleClickAff = (hostname) => {
-    navigate(`/dashboard/inventaire/affectation?host_name=${hostname}`);
+    navigate(`/dashboard/inventaire/attibution?host_name=${hostname}`);
   };
   const handleClickRec = (hostname) => {
     navigate(`/dashboard/inventaire/recuperation?host_name=${hostname}`);
@@ -67,7 +67,7 @@ export default function useAllInventaire() {
               handleClickAff(params.row.hostname);
             }}
           >
-            Affecter
+            Attribuer
           </Button>
         ) : (
           <Button

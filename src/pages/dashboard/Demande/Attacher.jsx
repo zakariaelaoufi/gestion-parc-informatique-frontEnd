@@ -13,13 +13,13 @@ import useSelectAllEntiteTravail from "../../../hooks/inputs/useSelectAllEntiteT
 import { useCreateAttachment } from "../../../hooks/api/useAttachmentApi";
 import { useGetAllAvailableInventaire } from "../../../hooks/api/useInventaireApi";
 
-export default function Attacher() {
+export default function Attacher({ host_name }) {
   const { selectAllEntiteTravail, entiteTravail } = useSelectAllEntiteTravail();
   const allInventaire = useGetAllAvailableInventaire().data;
   const navigate = useNavigate();
 
   const [dateAttachment, setDateAttachment] = useState("");
-  const [hostname, setHostname] = useState("");
+  const [hostname, setHostname] = useState(host_name || "");
   const [errors, setErrors] = useState(null);
 
   const existenceHostname = (hostname) => {
@@ -64,20 +64,6 @@ export default function Attacher() {
         },
       }}
     >
-      <Typography
-        component="h2"
-        variant="h5"
-        sx={{
-          mt: 2,
-          mb: 6,
-          fontWeight: 700,
-          borderLeft: "4px solid",
-          borderLeftColor: "primary.main",
-          pl: 2,
-        }}
-      >
-        Attribuer une machine
-      </Typography>
       <Box
         sx={{
           display: "flex",

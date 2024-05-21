@@ -4,6 +4,7 @@ import {
   createOperationAttachment,
   deleteAttachment,
   getAllAttachment,
+  getAllNotAvailableAttachment,
   getAttachmentById,
   getAttachmentByMarche,
   getAttachmentBySupplier,
@@ -78,6 +79,22 @@ export const useCreateAttachment = ({ onSuccess, onError } = {}) => {
     onSuccess: () => {
       onSuccess && onSuccess();
       queryClient.invalidateQueries({ queryKey: ["allAttachment"] });
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useGetAllNotAvailableAttachment = ({
+  onSuccess,
+  onError,
+} = {}) => {
+  return useQuery({
+    queryKey: ["allAvailableAttachment"],
+    queryFn: getAllNotAvailableAttachment,
+    onSuccess: () => {
+      onSuccess && onSuccess();
     },
     onError: () => {
       onError && onError();

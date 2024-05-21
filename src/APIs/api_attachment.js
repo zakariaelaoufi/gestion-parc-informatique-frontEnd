@@ -6,6 +6,13 @@ export const getAllAttachment = async () => {
   return data || [];
 };
 
+export const getAllNotAvailableAttachment = async () => {
+  // const url = "/marchesCommandes";
+  const url = "/attachments/notavailable";
+  const { data } = await axios.get(url);
+  return data || [];
+};
+
 export const getAttachmentById = async (idAttachment) => {
   const url = `/attachments/${idAttachment}`;
   const { data } = await axios.get(url);

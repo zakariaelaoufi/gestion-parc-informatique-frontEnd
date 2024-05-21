@@ -27,8 +27,9 @@ import {
   ListInventairePage,
 } from "../pages/dashboard/Inventaire";
 import {
-  AttacherPage,
-  DemandePage,
+  // AttacherPage,
+  AttribuerPage,
+  // DemandePage,
   RecupererPage,
 } from "../pages/dashboard/Demande";
 import { CategoriePage } from "../pages/dashboard/Categorie";
@@ -96,17 +97,23 @@ export const MenuData = [
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       {
-        name: "Attribuer machine",
-        path: "affectation",
-        component: <DemandePage />,
+        name: "Attribution machine",
+        path: "attibution",
+        component: <AttribuerPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
-      {
-        name: "Attacher machine",
-        path: "Attacher-machine",
-        component: <AttacherPage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
+      // {
+      //   name: "affectation machine",
+      //   path: "affectation",
+      //   component: <DemandePage />,
+      //   permissions: [user_role.BO, user_role.DEPARTMENT],
+      // },
+      // {
+      //   name: "Attacher machine",
+      //   path: "Attacher-machine",
+      //   component: <AttacherPage />,
+      //   permissions: [user_role.BO, user_role.DEPARTMENT],
+      // },
       {
         name: "Imprimer Barcode",
         path: "imprimer-barcode",
