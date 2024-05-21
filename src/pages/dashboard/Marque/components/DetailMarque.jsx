@@ -25,7 +25,7 @@ export default function DetailMarque({ idMarque }) {
           tabList={[
             {
               title: "Produits associés",
-              component: <MarqueProductInfo data={MarqueByID?.produitsInfo} />,
+              component: <MarqueProductInfo data={MarqueByID?.produits} />,
             },
           ]}
         />

@@ -3,6 +3,7 @@ import { useGetInventaireById } from "../../../../hooks/api/useInventaireApi";
 import BlockInfo from "../../../../components/Utils/BlockInfo";
 import TabRender from "../../../../components/Tab/TabRender";
 import TableHistorique from "./TableHistorique";
+import HistoriqueAttachment from "./HistoriqueAttachment";
 
 export default function DetailInventaire({ idInventaire }) {
   const inventaireByID = useGetInventaireById({ idInventaire }).data;
@@ -28,8 +29,14 @@ export default function DetailInventaire({ idInventaire }) {
         <TabRender
           tabList={[
             {
-              title: "Historique d'attribuation",
+              title: "Historique d'utilisation",
               component: <TableHistorique data={inventaireByID?.affecters} />,
+            },
+            {
+              title: "Historique d'attachement",
+              component: (
+                <HistoriqueAttachment data={inventaireByID?.attachers} />
+              ),
             },
           ]}
         />

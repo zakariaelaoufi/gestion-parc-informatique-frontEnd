@@ -28,7 +28,7 @@ export default function DetailCategorie({ idCategorie }) {
             {
               title: "Produits associés",
               component: (
-                <CategorieProductInfo data={categorieByID?.produitsInfo} />
+                <CategorieProductInfo data={categorieByID?.produits} />
               ),
             },
           ]}

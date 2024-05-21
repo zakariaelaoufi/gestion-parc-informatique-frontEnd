@@ -62,39 +62,47 @@ export default function MachineAffecter({ data = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              {columns.map((column) => (
-                <TableCell
-                  key={column.field}
-                  align="center"
-                  scope="row"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.field === "nomMachine" ? (
-                    <span>
-                      {row[column.field].length > 16
-                        ? `${row[column.field].substring(0, 16)}...`
-                        : row[column.field]}
-                    </span>
-                  ) : column.field === "numeroSerie" ? (
-                    row[column.field] === null ? (
-                      ""
-                    ) : (
+          {rows.length > 0 ? (
+            rows.map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.field}
+                    align="center"
+                    scope="row"
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.field === "nomMachine" ? (
+                      <span>
+                        {row[column.field].length > 16
+                          ? `${row[column.field].substring(0, 16)}...`
+                          : row[column.field]}
+                      </span>
+                    ) : column.field === "numeroSerie" ? (
+                      row[column.field] === null ? (
+                        ""
+                      ) : (
+                        row[column.field]
+                      )
+                    ) : row[column.field] !== null ? (
                       row[column.field]
-                    )
-                  ) : row[column.field] !== null ? (
-                    row[column.field]
-                  ) : (
-                    <b>{"En cours"}</b>
-                  )}
-                </TableCell>
-              ))}
+                    ) : (
+                      <b>{"En cours"}</b>
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} align="center">
+                Pas de données disponibles pour le moment
+              </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

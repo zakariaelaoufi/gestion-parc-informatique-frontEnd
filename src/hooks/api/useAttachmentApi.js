@@ -21,10 +21,14 @@ export const useGetAllAttachment = ({ onSuccess, onError } = {}) => {
     },
   });
 };
-export const useGetAttachmentById = ({ onSuccess, onError, id } = {}) => {
+export const useGetAttachmentById = ({
+  onSuccess,
+  onError,
+  idAttachment,
+} = {}) => {
   return useQuery({
-    queryKey: ["attachmentById", id],
-    queryFn: () => getAttachmentById(id),
+    queryKey: ["attachmentById", idAttachment],
+    queryFn: () => getAttachmentById(idAttachment),
     onSuccess: () => {
       onSuccess && onSuccess();
     },
@@ -33,10 +37,14 @@ export const useGetAttachmentById = ({ onSuccess, onError, id } = {}) => {
     },
   });
 };
-export const useGetAttachmentByMarche = ({ onSuccess, onError, id } = {}) => {
+export const useGetAttachmentByMarche = ({
+  onSuccess,
+  onError,
+  idAttachment,
+} = {}) => {
   return useQuery({
-    queryKey: ["attachmentByMarche", id],
-    queryFn: () => getAttachmentByMarche(id),
+    queryKey: ["attachmentByMarche", idAttachment],
+    queryFn: () => getAttachmentByMarche(idAttachment),
     onSuccess: () => {
       onSuccess && onSuccess();
     },
@@ -45,10 +53,14 @@ export const useGetAttachmentByMarche = ({ onSuccess, onError, id } = {}) => {
     },
   });
 };
-export const useGetAttachmentBySupplier = ({ onSuccess, onError, id } = {}) => {
+export const useGetAttachmentBySupplier = ({
+  onSuccess,
+  onError,
+  idAttachment,
+} = {}) => {
   return useQuery({
-    queryKey: ["getAttachmentBySupplier", id],
-    queryFn: () => getAttachmentBySupplier(id),
+    queryKey: ["getAttachmentBySupplier", idAttachment],
+    queryFn: () => getAttachmentBySupplier(idAttachment),
     onSuccess: () => {
       onSuccess && onSuccess();
     },
@@ -93,15 +105,18 @@ export const useDeleteAttachment = ({ onSuccess, onError } = {}) => {
 export const useCreateOperationAttachment = ({
   onSuccess,
   onError,
-  id,
+  idAttachment,
 } = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (operation) => createOperationAttachment(id, operation),
+    mutationFn: (operation) =>
+      createOperationAttachment(idAttachment, operation),
     onSuccess: () => {
       onSuccess && onSuccess();
-      queryClient.invalidateQueries({ queryKey: ["attachmentById", id] });
+      queryClient.invalidateQueries({
+        queryKey: ["attachmentById", idAttachment],
+      });
       queryClient.invalidateQueries({ queryKey: ["allAttachment"] });
     },
     onError: () => {

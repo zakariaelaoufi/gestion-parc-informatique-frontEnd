@@ -3,6 +3,7 @@ import { Box, Grid } from "@mui/material";
 import BlockInfo from "../../../../components/Utils/BlockInfo";
 import TabRender from "../../../../components/Tab/TabRender";
 import TravailInfo from "./TravailInfo";
+import HistoriqueAttachment from "./HistoriqueAttachment";
 
 export default function EntiteDetail({ idEntiteTravail }) {
   const entiteByID = useGetEntiteTravailById({ idEntiteTravail }).data;
@@ -36,8 +37,14 @@ export default function EntiteDetail({ idEntiteTravail }) {
         <TabRender
           tabList={[
             {
-              title: "Historique d'attribuation",
+              title: "Historique des travailleurs",
               component: <TravailInfo data={entiteByID?.travaillerList} />,
+            },
+            {
+              title: "Historique des machines attachées",
+              component: (
+                <HistoriqueAttachment data={entiteByID?.attacherList} />
+              ),
             },
           ]}
         />

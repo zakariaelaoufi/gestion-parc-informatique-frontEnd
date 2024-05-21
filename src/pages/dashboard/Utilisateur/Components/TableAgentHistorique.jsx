@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Paper,
   Table,
@@ -9,10 +10,10 @@ import {
 } from "@mui/material";
 
 export default function TableAgentHistorique({ data = [], immatricule }) {
-  const rows = data.map((e, i) => ({
-    id: i,
+  const rows = data.map((entry, index) => ({
+    id: index,
     immatricule,
-    ...e,
+    ...entry,
   }));
 
   const columns = [
@@ -25,8 +26,8 @@ export default function TableAgentHistorique({ data = [], immatricule }) {
   return (
     <TableContainer component={Paper}>
       <Table
-        className=" table-style table-style-1"
-        aria-label="table"
+        className="table-style table-style-1"
+        aria-label="Agent History Table"
         size="small"
       >
         <TableHead>
@@ -35,7 +36,7 @@ export default function TableAgentHistorique({ data = [], immatricule }) {
               <TableCell
                 key={column.field}
                 align="center"
-                style={{ minWidth: column.minWidth }}
+                style={{ minWidth: column.width }}
               >
                 {column.headerName}
               </TableCell>
@@ -43,23 +44,27 @@ export default function TableAgentHistorique({ data = [], immatricule }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              {columns.map((column) => (
-                <TableCell
-                  key={column.field}
-                  align="center"
-                  scope="row"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {row[column.field] ? row[column.field] : <b>{"En cours"}</b>}
-                </TableCell>
-              ))}
+          {rows.length > 0 ? (
+            rows.reverse().map((row) => (
+              <TableRow key={row.id}>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.field}
+                    align="center"
+                    style={{ minWidth: column.width }}
+                  >
+                    {row[column.field] || <b>En cours</b>}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} align="center">
+                Pas de données disponibles pour le moment
+              </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

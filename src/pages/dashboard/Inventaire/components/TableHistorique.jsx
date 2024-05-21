@@ -38,19 +38,31 @@ export default function TableHistorique({ data = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.reverse().map((row, i) => (
-            <TableRow key={row.id}>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.field}
-                  align="center"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {row[column.field] ? row[column.field] : <b>{"En cours"}</b>}
-                </TableCell>
-              ))}
+          {rows.length > 0 ? (
+            rows.reverse().map((row) => (
+              <TableRow key={row.id}>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.field}
+                    align="center"
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {row[column.field] ? (
+                      row[column.field]
+                    ) : (
+                      <b>{"En cours"}</b>
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} align="center">
+                Pas de données disponibles pour le moment
+              </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

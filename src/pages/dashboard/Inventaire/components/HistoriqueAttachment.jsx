@@ -1,4 +1,3 @@
-import { Category } from "@mui/icons-material";
 import {
   Paper,
   Table,
@@ -8,33 +7,27 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
 
-export default function TableInventaire({ data = [] }) {
-  if (!data || data.length < 1) return <></>;
-  const rows = data?.map((e, index) => ({
-    id: index,
-    numeroSerie: e?.numeroSerie,
-    hostname: e?.hostname,
-    etat: e?.etat,
-    place:
-      e?.affectationPlace === null
-        ? e?.attachers[0]?.place || "Aucun"
-        : e?.affectationPlace,
-    Avec: e?.affectationPersonne === null ? "Aucun" : e?.affectationPersonne,
+export default function HistoriqueAttachment({ data = [] }) {
+  if (!data) return <></>;
+  console.log("atat", data);
+
+  // Map the data to rows
+  const rows = data.map((e, i) => ({
+    id: i,
+    ...e,
   }));
 
+  // Define the columns
   const columns = [
-    { field: "hostname", headerName: "Hostname", width: 180 },
-    { field: "numeroSerie", headerName: "Numero de serie", width: 180 },
-    { field: "etat", headerName: "Etat", width: 180 },
-    { field: "place", headerName: "Place", flex: 1.5 },
-    { field: "Avec", headerName: "Avec", width: 180 },
+    { field: "place", headerName: "Place", width: 180 },
+    { field: "dateAttachment", headerName: "Date Attachment", width: 180 },
+    { field: "dateRetoure", headerName: "Date Retoure", width: 180 },
   ];
 
   return (
     <TableContainer component={Paper}>
-      <Table className=" table-style table-style-1" aria-label="table">
+      <Table className="table-style table-style-1" aria-label="table">
         <TableHead>
           <TableRow>
             {columns.map((column) => (

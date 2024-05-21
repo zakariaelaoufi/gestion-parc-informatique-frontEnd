@@ -26,7 +26,11 @@ import {
   GenereBarCodePage,
   ListInventairePage,
 } from "../pages/dashboard/Inventaire";
-import { DemandePage, RecupererPage } from "../pages/dashboard/Demande";
+import {
+  AttacherPage,
+  DemandePage,
+  RecupererPage,
+} from "../pages/dashboard/Demande";
 import { CategoriePage } from "../pages/dashboard/Categorie";
 import { MarquePage } from "../pages/dashboard/Marque";
 
@@ -92,9 +96,15 @@ export const MenuData = [
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       {
-        name: "Attribuer une machine",
+        name: "Attribuer machine",
         path: "affectation",
         component: <DemandePage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+      {
+        name: "Attacher machine",
+        path: "Attacher-machine",
+        component: <AttacherPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       {
