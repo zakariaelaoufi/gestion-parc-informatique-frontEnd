@@ -14,7 +14,8 @@ import { useCreateAttachment } from "../../../hooks/api/useAttachmentApi";
 import { useGetAllAvailableInventaire } from "../../../hooks/api/useInventaireApi";
 
 export default function Attacher({ host_name }) {
-  const { selectAllEntiteTravail, entiteTravail } = useSelectAllEntiteTravail();
+  const { selectAllEntiteTravail, entiteTravail, entiteTravailName } =
+    useSelectAllEntiteTravail();
   const allInventaire = useGetAllAvailableInventaire().data;
   const navigate = useNavigate();
 
@@ -195,7 +196,7 @@ export default function Attacher({ host_name }) {
               fullWidth
               label="Entite de travail"
               variant="outlined"
-              value={entiteTravail?.nomEntiteTravail || ""}
+              value={entiteTravailName || ""}
               size="small"
             />
           </Box>

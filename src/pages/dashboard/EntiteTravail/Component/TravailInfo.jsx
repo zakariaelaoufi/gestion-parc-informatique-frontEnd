@@ -44,26 +44,34 @@ export default function TravailInfo({ data = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              {columns.map((column) => (
-                <TableCell
-                  key={column.field}
-                  align="center"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.field === "dateFin"
-                    ? row[column.field] == null
-                      ? "En cours"
-                      : row[column.field]
-                    : row[column.field]}
-                </TableCell>
-              ))}
+          {rows.length > 0 ? (
+            rows.map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.field}
+                    align="center"
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.field === "dateFin"
+                      ? row[column.field] == null
+                        ? "En cours"
+                        : row[column.field]
+                      : row[column.field]}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} align="center">
+                Pas de données disponibles pour le moment
+              </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

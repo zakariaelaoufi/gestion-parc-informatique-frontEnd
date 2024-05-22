@@ -6,7 +6,10 @@ import {
 import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useGetAllNotAvailableAttachment } from "../../../hooks/api/useAttachmentApi";
+import {
+  useGetAllNotAvailableAttachment,
+  useUpdateAttachment,
+} from "../../../hooks/api/useAttachmentApi";
 
 export default function Recuperer() {
   const location = useLocation();
@@ -32,9 +35,7 @@ export default function Recuperer() {
     return all?.find((inv) => inv.hostname === hostname);
   };
 
-  console.log(inventaireInfo("UC.00004"), "inventaireInfo");
-
-  const mutationCreate = useUpdateAffectation({
+  const mutationCreateAffectation = useUpdateAffectation({
     onSuccess: () => {
       navigate("/dashboard/inventaire/liste-inventaire");
     },
@@ -44,9 +45,18 @@ export default function Recuperer() {
     idAffectation: inventaireInfo(hostname)?.idAffectation,
   });
 
+  const mutationCreateAttachment = useUpdateAttachment({
+    onSuccess: () => {
+      navigate("/dashboard/inventaire/liste-inventaire");
+    },
+    onError: () => {
+      setErrors("vérifiez vos informations");
+    },
+    idAttachment: inventaireInfo(hostname)?.idAttachment,
+  });
+
   const onSubmit = () => {
-    if (existenceHostname(hostname) && dateRetour) {
-      console.log(inventaireInfo(hostname)?.idAffectation);
+    if (inventaireInfo(hostname).immatricule && dateRetour) {
       const obj = {
         idAffectation: inventaireInfo(hostname)?.idAffectation,
         dateAffectation: inventaireInfo(hostname)?.dateAffectation,
@@ -54,7 +64,24 @@ export default function Recuperer() {
         idTravail: inventaireInfo(hostname)?.idTravail,
         idInventaire: inventaireInfo(hostname)?.idInventaire,
       };
-      mutationCreate.mutate(obj);
+      mutationCreateAffectation.mutate(obj);
+      setErrors(null);
+      return true;
+    } else if (inventaireInfo(hostname)?.idAttachment && dateRetour) {
+      console.log(inventaireInfo(hostname)?.idInventaire, "idInventaire");
+      console.log(inventaireInfo(hostname)?.idTravail, "idTravail");
+      const obj = {
+        idAttachment: inventaireInfo(hostname)?.idAttachment,
+        dateAttachment: inventaireInfo(hostname)?.dateAttachment,
+        dateRetoure: dateRetour,
+        entiteTravail: {
+          idEntiteTravail: inventaireInfo(hostname)?.idEntiteTravail,
+        },
+        inventaire: {
+          idInventaire: inventaireInfo(hostname)?.idInventaire,
+        },
+      };
+      mutationCreateAttachment.mutate(obj);
       setErrors(null);
       return true;
     } else {

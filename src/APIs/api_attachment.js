@@ -13,6 +13,12 @@ export const getAllNotAvailableAttachment = async () => {
   return data || [];
 };
 
+export const UpdateAttachment = async (idAttachment, attachment) => {
+  console.log("attachments axios", idAttachment, attachment);
+  const url = `/attachments/${idAttachment}`;
+  return await axios.put(url, attachment);
+};
+
 export const getAttachmentById = async (idAttachment) => {
   const url = `/attachments/${idAttachment}`;
   const { data } = await axios.get(url);

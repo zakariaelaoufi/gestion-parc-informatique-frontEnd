@@ -9,6 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import useSelectEntiteTravail from "../../../../hooks/inputs/useSelectEntiteTravail";
+import useSelectAllEntiteTravail from "../../../../hooks/inputs/useSelectAllEntiteTravail";
 
 function CreateUpdateForm({
   isUpdate = false,
@@ -22,8 +23,7 @@ function CreateUpdateForm({
   const [typeEntiteTravail, setTypeEntiteTravail] = useState(
     isUpdate ? data?.typeEntiteTravail : ""
   );
-  const { selectEntiteTravail, entiteTravail } = useSelectEntiteTravail(
-    typeEntiteTravail,
+  const { selectAllEntiteTravail, entiteTravail } = useSelectAllEntiteTravail(
     isUpdate ? data?.parent?.idEntiteTravail : ""
   );
 
@@ -78,7 +78,7 @@ function CreateUpdateForm({
             </Select>
           </FormControl>
 
-          <Box sx={{ flex: 3, my: 2 }}>{selectEntiteTravail}</Box>
+          <Box sx={{ flex: 3, my: 2 }}>{selectAllEntiteTravail}</Box>
         </Box>
       </Box>
     </>

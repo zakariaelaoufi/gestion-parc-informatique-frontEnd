@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+  UpdateAttachment,
   createAttachment,
   createOperationAttachment,
   deleteAttachment,
@@ -95,6 +96,25 @@ export const useGetAllNotAvailableAttachment = ({
     queryFn: getAllNotAvailableAttachment,
     onSuccess: () => {
       onSuccess && onSuccess();
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useUpdateAttachment = ({
+  onSuccess = () => {},
+  onError = () => {},
+  idAttachment,
+} = {}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (Attachment) => UpdateAttachment(idAttachment, Attachment),
+    onSuccess: () => {
+      onSuccess && onSuccess();
+      queryClient.invalidateQueries({ queryKey: ["allAttachment"] });
     },
     onError: () => {
       onError && onError();
