@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createInventaire,
+  createMoreInventaire,
   deleteInventaire,
   getAllAvailableInventaire,
   getAllInventaire,
@@ -58,6 +59,22 @@ export const useCreateInventaire = ({ onSuccess, onError } = {}) => {
     mutationFn: createInventaire,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["allInventaire"] });
+      onSuccess && onSuccess();
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useAddMoreInventaire = ({ onSuccess, onError } = {}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: createMoreInventaire,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["allInventaire"] });
+      queryClient.invalidateQueries({ queryKey: ["allProduit"] });
       onSuccess && onSuccess();
     },
     onError: () => {

@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Drawer from "../../../../components/Drawer/Drawer";
 import { useGetAllUtilisateur } from "../../../../hooks/api/useUtilisateur";
 import AgentDetails from "./AgentDetails";
@@ -17,6 +18,7 @@ function useAllUtilisateur() {
     idEntiteTravail: e.travaillers?.reverse()[0]?.idEntiteTravail,
     dateDebut: e.travaillers?.reverse()[0]?.dateDebut,
     typeEntiteTravail: e.travaillers?.reverse()[0]?.typeEntiteTravail,
+    status: e.deleted ? "Hors service" : "En service",
   }));
 
   const columns = [
@@ -37,21 +39,34 @@ function useAllUtilisateur() {
       },
     },
     {
-      field: "nomUtilisateur",
-      headerName: "Nom",
+      field: "",
+      headerName: "Nom et Prénom",
       width: 180,
-      flex: 1.5,
-    },
-    {
-      field: "prenomUtilisateur",
-      headerName: "Prenom",
-      width: 180,
+      flex: 2,
+      renderCell: (params) => {
+        return params.row.nomUtilisateur + " " + params.row.prenomUtilisateur;
+      },
     },
     {
       field: "nomTravail",
       headerName: "Travaille dans",
       width: 180,
       flex: 2,
+    },
+    {
+      field: "status",
+      headerName: "Statut",
+      width: 180,
+      flex: 2,
+      renderCell: (params) => {
+        return (
+          <Typography
+            color={params.row.status == "En service" ? "green" : "red"}
+          >
+            {params.row.status}
+          </Typography>
+        );
+      },
     },
     { field: "email", headerName: "Email", width: 180, flex: 2 },
     {
@@ -61,10 +76,12 @@ function useAllUtilisateur() {
       align: "center",
       renderCell: (params) => {
         return (
-          <>
-            <UpdateUtilisateur data={params.row} />
-            <DeleteUtilisateur data={params.row} />
-          </>
+          params.row.status == "En service" && (
+            <>
+              <UpdateUtilisateur data={params.row} />
+              <DeleteUtilisateur data={params.row} />
+            </>
+          )
         );
       },
     },

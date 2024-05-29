@@ -23,6 +23,11 @@ export const createInventaire = async (Inventaire) => {
   return await axios.post(url, Inventaire);
 };
 
+export const createMoreInventaire = async (moreInventaire) => {
+  const url = "/inventaires/addmore";
+  return await axios.post(url, moreInventaire);
+};
+
 export const deleteInventaire = async (idInventaire) => {
   const url = `/inventaires/${idInventaire}`;
   return await axios.delete(url);

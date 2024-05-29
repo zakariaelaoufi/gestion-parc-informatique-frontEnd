@@ -2,6 +2,9 @@ import { Box, Typography } from "@mui/material";
 import TableData from "../../../components/Table/TableData";
 import CreateEntiteTravail from "./Component/CreateEntiteTravail";
 import useAllEntiteTravail from "./Component/useAllEntiteTravail";
+import RapportSurMachine from "./Component/RapportSurMachine";
+import Print from "../../../components/Export/Print/Print";
+import PrintIcon from "@mui/icons-material/Print";
 
 function ListDepartment() {
   const { rowsData, columns } = useAllEntiteTravail();
@@ -32,9 +35,25 @@ function ListDepartment() {
           >
             <Box></Box>
             <Box
-              sx={{ display: "flex", justifyContent: "space-between", gap: 3 }}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 3,
+                alignItems: "center",
+              }}
             >
-              <CreateEntiteTravail />
+              <Print
+                btnName="rapport des machines"
+                variant="outlined"
+                btnIcon={<PrintIcon />}
+                color="primary"
+                sx={{ px: 5, color: "white" }}
+              >
+                <RapportSurMachine />
+              </Print>{" "}
+              <Box>
+                <CreateEntiteTravail />
+              </Box>
             </Box>
           </Box>
         </Box>

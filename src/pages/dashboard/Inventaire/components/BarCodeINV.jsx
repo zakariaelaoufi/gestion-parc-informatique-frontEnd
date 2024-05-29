@@ -19,24 +19,42 @@ export default function BarCodeINV({ data = {}, typeBarcode = "CODE128" }) {
           borderRadius: 2,
           bgcolor: "background.paper",
         }}
-        width={"50%"}
+        width={"40%"}
         ref={ref}
       >
-        <Typography variant="h6" component="h3" sx={{ fontWeight: "bold" }}>
+        <Typography
+          variant="body2"
+          component="h3"
+          sx={{ fontWeight: "bold", maxWidth: "100%" }}
+        >
           RADEEF
         </Typography>
         <Typography
-          variant="h6"
+          variant="body2"
           component="h3"
-          sx={{ fontWeight: "bold", mt: -1, mb: 1.5 }}
+          sx={{ fontWeight: "bold", mt: 0.5, mb: 1.5, maxWidth: "100%" }}
         >
           INV {new Date().getDate()}/{new Date().getMonth() + 1}/
           {new Date().getFullYear()}
         </Typography>
-        <Typography variant="h6" component="h3" sx={{ fontWeight: "bold" }}>
+        <Typography
+          variant="body2"
+          component="h3"
+          sx={{ fontWeight: "bold", maxWidth: "100%" }}
+        >
           {data?.hostname}
         </Typography>
-        <Barcode value={data?.numeroSerie} height={50} format={typeBarcode} />
+        <Box
+          sx={{ display: "flex", justifyContent: "center", maxWidth: "100%" }}
+        >
+          <Barcode
+            value={data?.numeroSerie}
+            height={40}
+            format={typeBarcode}
+            width={1}
+            fontSize={16}
+          />
+        </Box>
       </Box>
       <ReactToPrint
         trigger={() => (
@@ -52,9 +70,6 @@ export default function BarCodeINV({ data = {}, typeBarcode = "CODE128" }) {
           </Button>
         )}
         content={() => ref.current}
-        // pageStyle={{
-        //   size: { width: "30mm", height: "20mm" },
-        // }}
       />
     </Box>
   );

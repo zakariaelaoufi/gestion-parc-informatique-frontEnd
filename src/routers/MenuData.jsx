@@ -17,11 +17,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { user_role } from "../global";
 import { ListEntiteTravailPage } from "../pages/dashboard/EntiteTravail";
 import { ListFournisseurPage } from "../pages/dashboard/Fournisseur";
-import {
-  CreateProduitPage,
-  ListProduitPage,
-  UpdateProduitPage,
-} from "../pages/dashboard/produit";
+import { CreateProduitPage, ListProduitPage } from "../pages/dashboard/produit";
 import {
   GenereBarCodePage,
   ListInventairePage,
@@ -54,12 +50,6 @@ export const MenuData = [
         name: "Ajouter un produit",
         path: "ajouter-produit",
         component: <CreateProduitPage />,
-        permissions: [user_role.BO],
-      },
-      {
-        name: "update produit",
-        path: "updtae-produit",
-        component: <UpdateProduitPage />,
         permissions: [user_role.BO],
       },
       {
@@ -97,9 +87,15 @@ export const MenuData = [
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       {
-        name: "Attribution machine",
+        name: "Attribuer machine",
         path: "attibution",
         component: <AttribuerPage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+      {
+        name: "Recuperer machine",
+        path: "recuperation",
+        component: <RecupererPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       // {
@@ -118,12 +114,6 @@ export const MenuData = [
         name: "Imprimer Barcode",
         path: "imprimer-barcode",
         component: <GenereBarCodePage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
-      {
-        name: "Recuperation",
-        path: "recuperation",
-        component: <RecupererPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
     ],

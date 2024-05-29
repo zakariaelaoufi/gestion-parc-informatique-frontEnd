@@ -3,8 +3,8 @@ import { useGetUtilisateurById } from "../../../../hooks/api/useUtilisateur";
 import BlockInfo from "../../../../components/Utils/BlockInfo";
 import TabRender from "../../../../components/Tab/TabRender";
 import TableAgentHistorique from "./TableAgentHistorique";
-import { Component } from "react";
 import MachineAffecter from "./MachineAffecter";
+import RapportSurMachineParUtilisateur from "./RapportSurMachineParUtilisateur";
 
 export default function AgentDetails({ idUtilisateur }) {
   const AgentByID = useGetUtilisateurById({ idUtilisateur })?.data;
@@ -17,19 +17,38 @@ export default function AgentDetails({ idUtilisateur }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Grid container spacing={1}>
-        <Grid item>
-          <BlockInfo
-            title={"Agent info"}
-            infoList={[
-              `Immatricule : ${AgentByID?.immatricule}`,
-              `Nom : ${AgentByID?.nomUtilisateur}`,
-              `Prenom : ${AgentByID?.prenomUtilisateur}`,
-              `Email : ${AgentByID?.email}`,
-            ]}
-          />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "top",
+        }}
+      >
+        <Grid container spacing={1}>
+          <Grid item>
+            <BlockInfo
+              title={"Agent info"}
+              infoList={[
+                `Immatricule : ${AgentByID?.immatricule}`,
+                `Nom : ${AgentByID?.nomUtilisateur}`,
+                `Prenom : ${AgentByID?.prenomUtilisateur}`,
+                `Email : ${AgentByID?.email}`,
+              ]}
+            />
+          </Grid>
         </Grid>
-      </Grid>
+        <Box
+          sx={{
+            width: "100%",
+            mt: -1,
+            display: "flex",
+            alignItems: "start",
+            justifyContent: "end",
+          }}
+        >
+          <RapportSurMachineParUtilisateur data={AgentByID} />
+        </Box>
+      </Box>
       <TabRender
         tabList={[
           {

@@ -23,12 +23,13 @@ export const useGetAllProduit = ({ onSuccess, onError } = {}) => {
   });
 };
 export const useGetProduitById = ({ onSuccess, onError, idProduit } = {}) => {
-  console.log("idProduit React Query", idProduit);
+  const queryClient = useQueryClient();
   return useQuery({
     queryKey: ["ProduitById", idProduit],
     queryFn: () => getProduitById(idProduit),
     onSuccess: () => {
       onSuccess && onSuccess();
+      queryClient.invalidateQueries({ queryKey: ["allProduit"] });
     },
     onError: () => {
       onError && onError();
