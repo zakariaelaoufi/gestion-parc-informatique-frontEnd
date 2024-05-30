@@ -1,8 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import ListCardsSection from "./components/ListCardsSection";
 import Chart from "./components/Chart";
 import useAllMarche from "../marche/components/useAllMarche";
 import TableData from "../../../components/Table/TableData";
+import ChartBar from "./components/ChartBar";
+import EtatPie from "./components/EtatPie";
 
 export default function Home() {
   return (
@@ -14,15 +16,100 @@ export default function Home() {
       <Box
         sx={{
           maxWidth: "100%",
-          mt: 0,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-evenly",
           alignItems: "center",
           gap: 2,
           py: 1,
+          my: 4,
         }}
       >
-        <Chart />
+        <Paper
+          mx={2}
+          sx={{
+            flex: "1",
+            width: "100%",
+            maxWidth: "120%",
+            height: "400px",
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid #e9d5ff",
+            borderRadius: 2,
+            boxShadow: " 0 1px 12px rgba(0, 0, 0, 0.15)",
+          }}
+        >
+          <Box
+            sx={{
+              height: "40px",
+              textAlign: "start",
+              borderBottom: "1px solid #e9d5ff",
+              bgcolor: "#e9d5ff",
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+            }}
+            mb={2}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{
+                color: "primary.secondary",
+                pl: 2,
+                py: 1,
+                fontFamily: "cursive",
+              }}
+            >
+              Le nombre des machine par etat
+            </Typography>
+          </Box>
+          <Box
+            mx={2}
+            sx={{ width: "100%", height: "100%", p: 2, overflow: "auto" }}
+          >
+            <EtatPie />
+          </Box>
+        </Paper>
+
+        <Paper
+          mx={2}
+          sx={{
+            flex: "2",
+            width: "100%",
+            maxWidth: "120%",
+            height: "400px",
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid #e9d5ff",
+            borderRadius: 2,
+            boxShadow: " 0 1px 12px rgba(0, 0, 0, 0.15)",
+          }}
+        >
+          <Box
+            sx={{
+              height: "40px",
+              textAlign: "start",
+              borderBottom: "1px solid #e9d5ff",
+              bgcolor: "#e9d5ff",
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+            }}
+            mb={2}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{
+                color: "primary.secondary",
+                pl: 2,
+                py: 1,
+                fontFamily: "cursive",
+              }}
+            >
+              Nombre des machine par categorie
+            </Typography>
+          </Box>
+          <Box sx={{ width: "100%", height: "100%", p: 2 }}>
+            <ChartBar />
+          </Box>
+        </Paper>
       </Box>
       <Box
         sx={{
