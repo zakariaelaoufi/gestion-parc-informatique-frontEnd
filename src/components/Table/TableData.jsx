@@ -13,7 +13,11 @@ import {
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export default function TableData({ rows = [], columns = [] }) {
+export default function TableData({
+  rows = [],
+  columns = [],
+  isDense = false,
+}) {
   const { snackbarHTML, handleOpenSnackbar } = useSnackbar();
   const [clm, setClm] = useState(null);
   useEffect(() => {
@@ -51,6 +55,7 @@ export default function TableData({ rows = [], columns = [] }) {
       <DataGrid
         rows={rows}
         columns={clm || []}
+        density={isDense === true ? "comfortable" : "standard"} // Corrected ternary usage
         checkboxSelection
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleSelectionModelChange}

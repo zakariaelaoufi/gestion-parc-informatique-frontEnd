@@ -5,12 +5,10 @@ import Home from "../pages/dashboard/home";
 import { ListUtiliasateurPage } from "../pages/dashboard/Utilisateur";
 // import UserManagement2 from "../pages/dashboard/administration/__user-management";
 // import Marche from "../pages/dashboard/marche";
-import { CreateSupplierPage } from "../pages/dashboard/supplier";
 
 /********** icons ************/
 import BroadcastOnHomeIcon from "@mui/icons-material/BroadcastOnHome";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
@@ -30,6 +28,8 @@ import {
 } from "../pages/dashboard/Demande";
 import { CategoriePage } from "../pages/dashboard/Categorie";
 import { MarquePage } from "../pages/dashboard/Marque";
+
+// pfe
 
 export const MenuData = [
   {
@@ -58,7 +58,12 @@ export const MenuData = [
         component: <ListProduitPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
-
+      {
+        name: "Fournisseur",
+        path: "fournisseurs",
+        component: <ListFournisseurPage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
       {
         name: "Categorie",
         path: "categories",
@@ -119,45 +124,39 @@ export const MenuData = [
     ],
   },
   {
-    name: "Fournisseur",
-    icon: <AccountTreeIcon />,
-    path: "fournisseur",
-    component: <h1>Fournisseur</h1>,
+    name: "Employe",
+    icon: <HomeRoundedIcon />,
+    path: "employe",
+    component: <h1>Employe</h1>,
     permissions: [user_role.BO, user_role.DEPARTMENT],
     children: [
       {
-        name: "Ajouter un Fournisseur",
-        path: "ajouter-fournisseur",
-        component: <CreateSupplierPage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
-      {
-        name: "List Fournisseur",
-        path: "list-fournisseur",
-        component: <ListFournisseurPage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
-    ],
-  },
-  {
-    name: "Administration",
-    icon: <AdminPanelSettingsIcon />,
-    path: "administration",
-    component: <h1>Administration</h1>,
-    permissions: [user_role.SUPER_ADMIN],
-    children: [
-      {
-        name: "Gestion Agent",
-        path: "agents-management",
+        name: "Liste employe",
+        path: "list-employe",
         component: <ListUtiliasateurPage />,
-        permissions: [user_role.ADMIN, user_role.SUPER_ADMIN],
-      },
-      {
-        name: "Gestion Entité Travail",
-        path: "entite-travail-management",
-        component: <ListEntiteTravailPage />,
-        permissions: [user_role.SUPER_ADMIN],
+        permissions: [user_role.BO, user_role.DEPARTMENT],
       },
     ],
   },
+  // {
+  //   name: "Administration",
+  //   icon: <AdminPanelSettingsIcon />,
+  //   path: "administration",
+  //   component: <h1>Administration</h1>,
+  //   permissions: [user_role.SUPER_ADMIN],
+  //   children: [
+  //     {
+  //       name: "Gestion Agent",
+  //       path: "agents-management",
+  //       component: <ListUtiliasateurPage />,
+  //       permissions: [user_role.ADMIN, user_role.SUPER_ADMIN],
+  //     },
+  //     {
+  //       name: "Gestion Entité Travail",
+  //       path: "entite-travail-management",
+  //       component: <ListEntiteTravailPage />,
+  //       permissions: [user_role.SUPER_ADMIN],
+  //     },
+  //   ],
+  // },
 ];

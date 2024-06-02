@@ -49,11 +49,12 @@ export default function EtatPie() {
         label: "Le nombre des machine par etat",
         data: values,
         backgroundColor: [
-          "#581c87",
-          "#B565A7",
-          "#6B5B95",
-          // "#FF6F61",
-          // "#F7CAC9",
+          "#AF69E5", // Purple
+          "#C71585", // Pink
+          "#6B5B95", // Purple
+          "#581c87", // Coral
+          "#B565A7", // Purple
+          "#6b21a8", // Light Blue
         ],
         hoverOffset: 4,
       },

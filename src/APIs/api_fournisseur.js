@@ -21,3 +21,8 @@ export const deleteSupplier = async (idFournisseur) => {
   const url = `/fournisseur/${idFournisseur}`;
   return await axios.delete(url);
 };
+
+export const updateFournisseur = async (idFournisseur, fournisseur) => {
+  const url = `/fournisseur/${idFournisseur}`;
+  return await axios.put(url, fournisseur);
+};

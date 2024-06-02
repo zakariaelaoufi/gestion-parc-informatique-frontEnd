@@ -32,3 +32,8 @@ export const deleteInventaire = async (idInventaire) => {
   const url = `/inventaires/${idInventaire}`;
   return await axios.delete(url);
 };
+
+export const updateInventaire = async (idInventaire, inventaire) => {
+  const url = `/inventaires/${idInventaire}`;
+  return await axios.put(url, inventaire);
+};

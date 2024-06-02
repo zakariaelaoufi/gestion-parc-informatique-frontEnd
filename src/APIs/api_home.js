@@ -20,3 +20,17 @@ export const getPieInfo = async () => {
   const { data } = await axios.get(url);
   return data || [];
 };
+
+export const getMachineCountDepartment = async () => {
+  // const url = "/marchesCommandes";
+  const url = "/home/machine-count-department";
+  const { data } = await axios.get(url);
+  return data || [];
+};
+
+export const getTop5Actif = async () => {
+  // const url = "/marchesCommandes";
+  const url = "/home/top5actif";
+  const { data } = await axios.get(url);
+  return data || [];
+};

@@ -23,6 +23,7 @@ export const deleteEntiteTravail = async (idEntiteTravail) => {
 };
 
 export const updateEntiteTravail = async (idEntiteTravail, entity) => {
+  console.log("idEntiteTravail axios", idEntiteTravail, entity);
   const url = `/entitetravail/${idEntiteTravail}`;
-  return await axios.post(url, entity);
+  return await axios.put(url, entity);
 };

@@ -3,6 +3,7 @@ import { useGetAllEntiteTravail } from "../../../../hooks/api/useEntiteTravailAp
 import EntiteDetail from "./EntiteDetail";
 import Drawer from "../../../../components/Drawer/Drawer";
 import { Typography } from "@mui/material";
+import UpdateEntiteTravail from "./UpdateEntiteTravail";
 
 // const createData = (
 //   id,
@@ -34,9 +35,9 @@ function useAllEntiteTravail() {
     nomParent:
       e.parent?.idEntiteTravail == undefined
         ? ""
-        : e.parent?.typeEntiteTravail.toLowerCase() +
+        : e.parent?.typeEntiteTravail.toUpperCase() +
           " " +
-          e.parent?.nomEntiteTravail,
+          e.parent?.nomEntiteTravail.toUpperCase(),
     status: e.deleted == true ? "Hors service" : "En Service",
   }));
 
@@ -90,6 +91,7 @@ function useAllEntiteTravail() {
         return (
           params.row.status === "En Service" && (
             <>
+              <UpdateEntiteTravail data={params.row} />
               <DeleteEntiteTravail data={params.row} />
             </>
           )

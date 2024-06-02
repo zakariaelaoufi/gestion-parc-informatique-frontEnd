@@ -11,10 +11,10 @@ const themeStyle = (mode) => ({
       white: "#fff",
     },
     primary: {
-      main: "#6b21a8" /*#6c6ed0 */,
+      main: "#a855f7" /*#6c6ed0 */,
     },
     secondary: {
-      main: "#581c87" /*5A5CAD #454685  -- #30305C*/,
+      main: "#6b21a8" /*5A5CAD #454685  -- #30305C*/,
       dark: "#3b076" /**#333C61 */,
     },
     background: {

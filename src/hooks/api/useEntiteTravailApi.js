@@ -61,12 +61,13 @@ export const useCreateEntiteTravail = ({
 export const useUpdateEntiteTravail = ({
   onSuccess = () => {},
   onError = () => {},
-  idDepartment = -1,
+  idEntiteTravail = -1,
 } = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (Department) => updateEntiteTravail(idDepartment, Department),
+    mutationFn: (entitetravail) =>
+      updateEntiteTravail(idEntiteTravail, entitetravail),
     onSuccess: () => {
       onSuccess && onSuccess();
       queryClient.invalidateQueries({ queryKey: ["allEntiteTravail"] });

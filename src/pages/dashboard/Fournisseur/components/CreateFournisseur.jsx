@@ -34,10 +34,11 @@ function CreateFournisseur() {
     };
     if (!validateForm(obj)) {
       setErrors("Veuillez remplir tous les champs correctement.");
-      return;
+      return false;
     }
-    mutationCreate.mutate(obj);
+    console.log(obj);
     setErrors(null);
+    return true;
   };
 
   const validateForm = (data) => {

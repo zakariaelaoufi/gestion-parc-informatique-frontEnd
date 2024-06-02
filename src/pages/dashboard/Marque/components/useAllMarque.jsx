@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Drawer from "../../../../components/Drawer/Drawer";
 import { useGetAllMarque } from "../../../../hooks/api/useMarqueApi";
 import DeleteMarque from "./DeleteMarque";
@@ -33,15 +34,28 @@ export default function useAllMarque() {
       width: 180,
     },
     {
+      field: "deleted",
+      headerName: "Status",
+      width: 180,
+      renderCell: (params) =>
+        params.value ? (
+          <Typography color="red">⛔ Supprimé</Typography>
+        ) : (
+          <Typography color="green">✅ Actif</Typography>
+        ),
+    },
+    {
       field: "Action",
       headerName: "Action",
       width: 180,
       renderCell: (params) => {
         return (
-          <>
-            <UpdateMarque data={params.row} />
-            <DeleteMarque data={params.row} />
-          </>
+          !params.row.deleted && (
+            <>
+              <UpdateMarque data={params.row} />
+              <DeleteMarque data={params.row} />
+            </>
+          )
         );
       },
     },

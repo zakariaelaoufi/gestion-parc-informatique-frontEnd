@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Drawer from "../../../../components/Drawer/Drawer";
 import { useGetAllCategorie } from "../../../../hooks/api/useCategorieApi";
 import DeleteCategorie from "./DeleteCategorie";
@@ -38,15 +39,28 @@ export default function useAllCategorie() {
       width: 180,
     },
     {
+      field: "deleted",
+      headerName: "Status",
+      width: 180,
+      renderCell: (params) =>
+        params.value ? (
+          <Typography color="red">⛔ Supprimé</Typography>
+        ) : (
+          <Typography color="green">✅ Actif</Typography>
+        ),
+    },
+    {
       field: "Action",
       headerName: "",
       width: 180,
       renderCell: (params) => {
         return (
-          <>
-            <UpdateCategorie data={params.row} />
-            <DeleteCategorie data={params.row} />
-          </>
+          !params.row.deleted && (
+            <>
+              <UpdateCategorie data={params.row} />
+              <DeleteCategorie data={params.row} />
+            </>
+          )
         );
       },
     },

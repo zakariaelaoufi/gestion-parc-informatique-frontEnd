@@ -9,8 +9,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { BorderColor } from "@mui/icons-material";
-import { fontGrid } from "@mui/material/styles/cssUtils";
 
 ChartJS.register(
   CategoryScale,

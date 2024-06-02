@@ -24,8 +24,10 @@ export default function UpdateMarque({ data }) {
     if (obj.nomMarque) {
       mutationUpdateMarque.mutate(obj);
       setErrors(null);
+      return true;
     } else {
       setErrors("Veuillez vérifier vos informations");
+      return false;
     }
   };
 

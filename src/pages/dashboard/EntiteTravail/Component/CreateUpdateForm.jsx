@@ -58,27 +58,32 @@ function CreateUpdateForm({
             value={nomEntiteTravail}
             onChange={(e) => setNomEntiteTravail(e.target.value)}
           />
+          {isUpdate == false ? (
+            <>
+              <FormControl fullWidth sx={{ flex: 3, my: 2 }}>
+                <InputLabel id="type_entite_travail_label">
+                  Type Entite travail
+                </InputLabel>
+                <Select
+                  labelId="type_entite_travail_label"
+                  id="type_entite_travail_select"
+                  value={typeEntiteTravail}
+                  label="Type Entite travail"
+                  variant="outlined"
+                  required
+                  onChange={(e) => setTypeEntiteTravail(e.target.value)}
+                >
+                  <MenuItem value={"DEPARTEMENT"}>Departement</MenuItem>
+                  <MenuItem value={"DIVISION"}>Division</MenuItem>
+                  <MenuItem value={"SERVICE"}>Service</MenuItem>
+                </Select>
+              </FormControl>
 
-          <FormControl fullWidth sx={{ flex: 3, my: 2 }}>
-            <InputLabel id="type_entite_travail_label">
-              Type Entite travail
-            </InputLabel>
-            <Select
-              labelId="type_entite_travail_label"
-              id="type_entite_travail_select"
-              value={typeEntiteTravail}
-              label="Type Entite travail"
-              variant="outlined"
-              required
-              onChange={(e) => setTypeEntiteTravail(e.target.value)}
-            >
-              <MenuItem value={"DEPARTEMENT"}>Departement</MenuItem>
-              <MenuItem value={"DIVISION"}>Division</MenuItem>
-              <MenuItem value={"SERVICE"}>Service</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Box sx={{ flex: 3, my: 2 }}>{selectAllEntiteTravail}</Box>
+              <Box sx={{ flex: 3, my: 2 }}>{selectAllEntiteTravail}</Box>
+            </>
+          ) : (
+            <></>
+          )}
         </Box>
       </Box>
     </>

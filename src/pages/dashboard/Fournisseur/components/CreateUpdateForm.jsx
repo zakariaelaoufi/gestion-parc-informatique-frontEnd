@@ -11,11 +11,11 @@ function CreateUpdateForm({
     isUpdate ? data?.nomFournisseur : ""
   );
   const [adresse, setAdresseFournisseur] = useState(
-    isUpdate ? data?.adresseFournisseur : ""
+    isUpdate ? data?.adresse : ""
   );
-  const [ice, setICE] = useState(isUpdate ? data?.ICE : "");
-  const [tel, setTel] = useState(isUpdate ? data?.Tel : "");
-  const [fax, setFax] = useState(isUpdate ? data?.Fax : "");
+  const [ice, setICE] = useState(isUpdate ? data?.ice : "");
+  const [tel, setTel] = useState(isUpdate ? data?.tel : "");
+  const [fax, setFax] = useState(isUpdate ? data?.fax : "");
   const [email, setEmail] = useState(isUpdate ? data?.email : "");
 
   /**********  Submit and validation ****************** */
@@ -28,7 +28,7 @@ function CreateUpdateForm({
       fax,
       email,
     });
-  }, [nomFournisseur, adresse, ice, tel, fax, email, setFormData]);
+  }, [nomFournisseur, adresse, ice, tel, fax, email]);
 
   return (
     <>

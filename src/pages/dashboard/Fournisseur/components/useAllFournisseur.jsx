@@ -1,6 +1,7 @@
 import UpdateFournisseur from "./UpdateFournisseur";
 import DeleteFournisseur from "./DeleteFournisseur";
 import { useGetAllFournisseur } from "../../../../hooks/api/useFournisseurApi";
+import { Typography } from "@mui/material";
 
 const createData = (
   id,
@@ -10,9 +11,20 @@ const createData = (
   tel,
   fax,
   adresse,
-  email
+  email,
+  deleted
 ) => {
-  return { id, idFournisseur, nomFournisseur, ice, tel, fax, adresse, email };
+  return {
+    id,
+    idFournisseur,
+    nomFournisseur,
+    ice,
+    tel,
+    fax,
+    adresse,
+    email,
+    deleted,
+  };
 };
 
 function useAllFournisseur() {
@@ -25,7 +37,8 @@ function useAllFournisseur() {
       e.tel,
       e.fax,
       e.adresse,
-      e.email
+      e.email,
+      e.deleted
     )
   );
   const columns = [
@@ -41,16 +54,29 @@ function useAllFournisseur() {
     { field: "adresse", headerName: "Adresse", width: 250 },
     { field: "email", headerName: "Email", width: 250 },
     {
+      field: "deleted",
+      headerName: "Status",
+      width: 180,
+      renderCell: (params) =>
+        params.value ? (
+          <Typography color="red">⛔ Supprimé</Typography>
+        ) : (
+          <Typography color="green">✅ Actif</Typography>
+        ),
+    },
+    {
       field: "action",
       headerName: "",
       width: 180,
       align: "center",
       renderCell: (params) => {
         return (
-          <>
-            <UpdateFournisseur />
-            <DeleteFournisseur data={params.row} />
-          </>
+          !params.row.deleted && (
+            <>
+              <UpdateFournisseur data={params.row} />
+              <DeleteFournisseur data={params.row} />
+            </>
+          )
         );
       },
     },

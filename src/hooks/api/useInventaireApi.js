@@ -6,6 +6,7 @@ import {
   getAllAvailableInventaire,
   getAllInventaire,
   getInventaireById,
+  updateInventaire,
 } from "../../APIs/api_inventaire";
 ("../../APIs/api_fournisseur");
 
@@ -88,6 +89,25 @@ export const useDeleteInventaire = ({ onSuccess, onError } = {}) => {
 
   return useMutation({
     mutationFn: deleteInventaire,
+    onSuccess: () => {
+      onSuccess && onSuccess();
+      queryClient.invalidateQueries({ queryKey: ["allInventaire"] });
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useUpdateInventaire = ({
+  onSuccess = () => {},
+  onError = () => {},
+  idInventaire = -1,
+} = {}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (inventaire) => updateInventaire(idInventaire, inventaire),
     onSuccess: () => {
       onSuccess && onSuccess();
       queryClient.invalidateQueries({ queryKey: ["allInventaire"] });

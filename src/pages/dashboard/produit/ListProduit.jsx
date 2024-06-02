@@ -58,7 +58,7 @@ export default function ListProduit() {
             borderRadius: 2,
           }}
         >
-          <TableData rows={rows?.reverse()} columns={columns} />
+          <TableData rows={rows?.reverse()} columns={columns} isDense={true} />
         </Box>
       </Box>
     </>

@@ -60,8 +60,8 @@ export default function DeatailProduit({ idProduit }) {
                 `Quantite : ${produitByID?.totalPiece}`,
                 `Date livraison : ${produitByID?.dateLivraison}`,
                 `Date expiration de garantie  : ${produitByID?.dateExperation}`,
-                `Categorie : ${produitByID?.categorie?.libelle}`,
-                `Marque : ${produitByID?.marque?.nomMarque}`,
+                `Categorie : ${produitByID?.libelle}`,
+                `Marque : ${produitByID?.nomMarque}`,
               ]}
               ispadding={false}
             />

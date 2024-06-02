@@ -11,68 +11,98 @@ export default function useAllProduit() {
     nomProduit: e.nomProduit,
     prix: e.prix,
     delai: e.delai + " an/ans",
-    libelle: e.categorie?.libelle,
+    libelle: e?.libelle,
     enStockNB: e.nbEtatInv?.ENSTOCK,
     actif: e.nbEtatInv?.ACTIF,
     totalPiece: e.totalPiece,
     dateExperation: e.dateExperation,
     imageURL: e.imageURL,
   }));
-  console.log("rows ---->", rows);
+
   const columns = [
     {
       field: "img",
       headerName: "Image",
-      flex: 2,
+      flex: 0.75,
       width: 200,
-      renderCell: (params) => {
-        return (
-          <img
-            // src={params.row.img}
-            src={`${serverIMG}/${params.row.imageURL}`}
-            alt="img"
-            style={{
-              width: "60px",
-              height: "px",
-              objectFit: "contain",
-              borderRadius: "5px",
-              padding: "2px",
-            }}
-          />
-        );
-      },
+      renderCell: (params) => (
+        <img
+          src={`${serverIMG}/${params.row.imageURL}`}
+          alt="img"
+          style={{
+            width: "60px",
+            height: "60px",
+            objectFit: "contain",
+            borderRadius: "5px",
+            padding: "2px",
+            paddingTop: "-2px",
+            cursor: "pointer",
+          }}
+        />
+      ),
     },
     {
       field: "nomProduit",
       headerName: "Nom",
       flex: 2,
       width: 200,
-      renderCell: (params) => {
-        return (
-          <Drawer
-            width="60%"
-            btnName={params.formattedValue}
-            title="Details produit"
-          >
-            <DeatailProduit idProduit={params.row.idProduit} />
-          </Drawer>
-        );
-      },
+      renderCell: (params) => (
+        <Drawer
+          width="60%"
+          btnName={params.formattedValue}
+          title="Details produit"
+        >
+          <DeatailProduit idProduit={params.row.idProduit} />
+        </Drawer>
+      ),
     },
-    { field: "totalPiece", headerName: "Nb Piece", flex: 1, width: 100 },
-    { field: "prix", headerName: "Prix", flex: 1, type: "number", width: 100 },
-    { field: "enStockNB", headerName: "En Stock", flex: 1, width: 100 },
-    { field: "actif", headerName: "Actif", flex: 1, width: 100 },
-    { field: "libelle", headerName: "Categorie", flex: 1, width: 100 },
+    {
+      field: "totalPiece",
+      headerName: "Nb Piece",
+      flex: 1,
+      type: "number",
+      width: 100,
+      align: "center",
+    },
+    {
+      field: "prix",
+      headerName: "Prix",
+      flex: 1,
+      type: "number",
+      width: 100,
+      align: "center",
+    },
+    {
+      field: "enStockNB",
+      headerName: "En Stock",
+      flex: 1,
+      type: "number",
+      width: 100,
+      align: "center",
+    },
+    {
+      field: "actif",
+      headerName: "Actif",
+      flex: 1,
+      type: "number",
+      width: 100,
+      align: "center",
+    },
+    {
+      field: "libelle",
+      headerName: "Categorie",
+      flex: 1,
+      width: 100,
+    },
     {
       field: "Garentie",
       headerName: "Garentie",
       flex: 1,
       width: 100,
-      renderCell: (params) => {
-        return params.row.dateExperation > new Date() ? "Expire" : "Valide";
-      },
+      renderCell: (params) =>
+        params.row.dateExperation > new Date() ? "Expire" : "Valide",
     },
   ];
+
   return { rows, columns };
 }

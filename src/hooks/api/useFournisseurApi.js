@@ -4,6 +4,7 @@ import {
   deleteSupplier,
   getAllFournisseur,
   getSupplierById,
+  updateFournisseur,
 } from "../../APIs/api_fournisseur";
 
 export const useGetAllFournisseur = ({ onSuccess, onError } = {}) => {
@@ -51,6 +52,24 @@ export const useDeleteFournisseur = ({ onSuccess, onError } = {}) => {
 
   return useMutation({
     mutationFn: deleteSupplier,
+    onSuccess: () => {
+      onSuccess && onSuccess();
+      queryClient.invalidateQueries({ queryKey: ["allFournisseur"] });
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useUpdateFournisseur = ({
+  onSuccess = () => {},
+  onError = () => {},
+  idFournisseur = -1,
+} = {}) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (fournisseur) => updateFournisseur(idFournisseur, fournisseur),
     onSuccess: () => {
       onSuccess && onSuccess();
       queryClient.invalidateQueries({ queryKey: ["allFournisseur"] });

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 // import loginImg from "/src/assets/auth_bg_img_1.jpg";
 import assetIMG from "/src/assets/asset_image.jpeg";
+import auth_bg_img_3 from "/src/assets/auth_bg_img_3.jpg";
 import { Box } from "@mui/system";
 import { motion } from "framer-motion";
 
@@ -25,7 +26,7 @@ function AuthLayout({ children }) {
         animate={{ opacity: 1, y: -28 }}
         transition={{ ease: "easeInOut", duration: 0.35 }}
         sx={{
-          flex: "6",
+          flex: "4",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -40,14 +41,14 @@ function AuthLayout({ children }) {
           flex: "7",
           width: "100%",
           height: "100vh",
-          filter: "brightness(60%)",
+          filter: "brightness(95%)",
         }}
       >
         <motion.img
           //  initial={{ opacity: 0.7, x: 28 }}
           //  animate={{ opacity: 1, x: 0 }}
           //  transition={{ ease: "easeInOut", duration: 0.35 }}
-          src={assetIMG}
+          src={auth_bg_img_3}
           style={{
             width: "100%",
             height: "100vh",

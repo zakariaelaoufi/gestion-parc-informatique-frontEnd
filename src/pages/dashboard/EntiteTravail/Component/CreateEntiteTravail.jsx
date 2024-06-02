@@ -28,7 +28,6 @@ function CreateEntiteTravail() {
     };
 
     if (obj.nomEntiteTravail && obj.typeEntiteTravail) {
-      console.log(obj);
       mutationCreateEntiteTravail.mutate(obj);
       setFormError(null);
       return true;
