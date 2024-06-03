@@ -17,7 +17,7 @@ function AuthLayout({ children }) {
         backgroundColor: "background.light",
         borderLeftStyle: "solid",
         borderLeftColor: "secondary.main",
-        borderLeftWidth: "58px ",
+        borderLeftWidth: "30px ",
         overflow: "hidden",
       }}
     >
@@ -26,7 +26,7 @@ function AuthLayout({ children }) {
         animate={{ opacity: 1, y: -28 }}
         transition={{ ease: "easeInOut", duration: 0.35 }}
         sx={{
-          flex: "4",
+          flex: "5",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -41,7 +41,6 @@ function AuthLayout({ children }) {
           flex: "7",
           width: "100%",
           height: "100vh",
-          filter: "brightness(95%)",
         }}
       >
         <motion.img
@@ -52,8 +51,8 @@ function AuthLayout({ children }) {
           style={{
             width: "100%",
             height: "100vh",
-            objectFit: "cover",
-            objectPosition: "center",
+            objectFit: "contain",
+            objectPosition: "start",
           }}
         />
       </Box>

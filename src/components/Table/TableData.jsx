@@ -1,4 +1,4 @@
-import { Alert, Pagination } from "@mui/material";
+import { Alert, Box, Pagination } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 
 import {
@@ -50,7 +50,7 @@ export default function TableData({
   };
 
   return (
-    <div>
+    <Box sx={{ my: 2, mb: 7 }}>
       {snackbarHTML}
       <DataGrid
         rows={rows}
@@ -99,7 +99,7 @@ export default function TableData({
         //     handleOpenSnackbar(params.value);
         // }}
       />
-    </div>
+    </Box>
   );
 }
 

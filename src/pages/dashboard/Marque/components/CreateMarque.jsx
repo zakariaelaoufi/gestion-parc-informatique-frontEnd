@@ -22,8 +22,10 @@ export default function CreateMarque() {
     if (obj.nomMarque) {
       mutationCreateMarque.mutate(obj);
       setErrors(null);
+      return true;
     } else {
       setErrors("Veuillez vérifier vos informations");
+      return false;
     }
   };
 

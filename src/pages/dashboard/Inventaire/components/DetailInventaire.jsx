@@ -47,7 +47,7 @@ export default function DetailInventaire({ idInventaire }) {
         <TabRender
           tabList={[
             {
-              title: "Historique d'utilisation",
+              title: "Historique d'attribution",
               component: <TableHistorique data={inventaireByID?.affecters} />,
             },
             {

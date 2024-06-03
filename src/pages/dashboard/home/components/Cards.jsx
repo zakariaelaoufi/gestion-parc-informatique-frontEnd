@@ -1,8 +1,7 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Box, CardActionArea, Grid, Icon } from "@mui/material";
+import { Box, Grid, Icon } from "@mui/material";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import DomainIcon from "@mui/icons-material/Domain";
 import SupervisorAccountRoundedIcon from "@mui/icons-material/SupervisorAccountRounded";

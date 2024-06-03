@@ -30,6 +30,11 @@ import { CategoriePage } from "../pages/dashboard/Categorie";
 import { MarquePage } from "../pages/dashboard/Marque";
 
 // pfe
+import Face4Icon from "@mui/icons-material/Face4";
+import DomainIcon from "@mui/icons-material/Domain";
+import WarehouseIcon from "@mui/icons-material/Warehouse";
+import CategoryIcon from "@mui/icons-material/Category";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 
 export const MenuData = [
   {
@@ -47,35 +52,35 @@ export const MenuData = [
     permissions: [user_role.BO, user_role.DEPARTMENT],
     children: [
       {
-        name: "Ajouter un produit",
-        path: "ajouter-produit",
-        component: <CreateProduitPage />,
-        permissions: [user_role.BO],
-      },
-      {
         name: "Liste produit",
         path: "list-produit",
         component: <ListProduitPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
       {
-        name: "Fournisseur",
-        path: "fournisseurs",
-        component: <ListFournisseurPage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
+        name: "Ajouter un produit",
+        path: "ajouter-produit",
+        component: <CreateProduitPage />,
+        permissions: [user_role.BO],
       },
-      {
-        name: "Categorie",
-        path: "categories",
-        component: <CategoriePage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
-      {
-        name: "Marque",
-        path: "marques",
-        component: <MarquePage />,
-        permissions: [user_role.BO, user_role.DEPARTMENT],
-      },
+      // {
+      //   name: "Fournisseur",
+      //   path: "fournisseurs",
+      //   component: <ListFournisseurPage />,
+      //   permissions: [user_role.BO, user_role.DEPARTMENT],
+      // },
+      // {
+      //   name: "Categorie",
+      //   path: "categories",
+      //   component: <CategoriePage />,
+      //   permissions: [user_role.BO, user_role.DEPARTMENT],
+      // },
+      // {
+      //   name: "Marque",
+      //   path: "marques",
+      //   component: <MarquePage />,
+      //   permissions: [user_role.BO, user_role.DEPARTMENT],
+      // },
     ],
   },
   {
@@ -124,8 +129,53 @@ export const MenuData = [
     ],
   },
   {
+    name: "Fournisseur",
+    icon: <WarehouseIcon />,
+    path: "fournisseur",
+    component: <h1>Fournisseur</h1>,
+    permissions: [user_role.BO, user_role.DEPARTMENT],
+    children: [
+      {
+        name: "Liste fournisseur",
+        path: "list-fournisseur",
+        component: <ListFournisseurPage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+    ],
+  },
+  {
+    name: "Categorie",
+    icon: <CategoryIcon />,
+    path: "categories",
+    component: <h1>Categorie</h1>,
+    permissions: [user_role.BO, user_role.DEPARTMENT],
+    children: [
+      {
+        name: "Liste Categorie",
+        path: "list-categories",
+        component: <CategoriePage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+    ],
+  },
+  {
+    name: "Marque",
+    icon: <LocalMallIcon />,
+    path: "marques",
+    component: <h1>Marque</h1>,
+    permissions: [user_role.BO, user_role.DEPARTMENT],
+    children: [
+      {
+        name: "Liste Marque",
+        path: "list-marques",
+        component: <MarquePage />,
+        permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+    ],
+  },
+  {
     name: "Employe",
-    icon: <HomeRoundedIcon />,
+    icon: <Face4Icon />,
     path: "employe",
     component: <h1>Employe</h1>,
     permissions: [user_role.BO, user_role.DEPARTMENT],
@@ -135,6 +185,21 @@ export const MenuData = [
         path: "list-employe",
         component: <ListUtiliasateurPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
+      },
+    ],
+  },
+  {
+    name: "Entité de Travail",
+    icon: <DomainIcon />,
+    path: "entite-travail",
+    component: <h1>Entité de Travail</h1>,
+    permissions: [user_role.SUPER_ADMIN],
+    children: [
+      {
+        name: "Liste entité de travail",
+        path: "list-entite-travail",
+        component: <ListEntiteTravailPage />,
+        permissions: [user_role.SUPER_ADMIN],
       },
     ],
   },

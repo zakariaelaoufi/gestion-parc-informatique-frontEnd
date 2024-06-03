@@ -36,7 +36,7 @@ function CreateFournisseur() {
       setErrors("Veuillez remplir tous les champs correctement.");
       return false;
     }
-    console.log(obj);
+    mutationCreate.mutate(obj);
     setErrors(null);
     return true;
   };

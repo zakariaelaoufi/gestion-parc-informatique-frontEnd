@@ -9,7 +9,7 @@ export default function useAllProduit() {
     id: index,
     idProduit: e.idProduit,
     nomProduit: e.nomProduit,
-    prix: e.prix,
+    prix: e.prix + " DH",
     delai: e.delai + " an/ans",
     libelle: e?.libelle,
     enStockNB: e.nbEtatInv?.ENSTOCK,
@@ -68,9 +68,7 @@ export default function useAllProduit() {
       field: "prix",
       headerName: "Prix",
       flex: 1,
-      type: "number",
       width: 100,
-      align: "center",
     },
     {
       field: "enStockNB",
@@ -83,7 +81,7 @@ export default function useAllProduit() {
     {
       field: "actif",
       headerName: "Actif",
-      flex: 1,
+      flex: 0.8,
       type: "number",
       width: 100,
       align: "center",

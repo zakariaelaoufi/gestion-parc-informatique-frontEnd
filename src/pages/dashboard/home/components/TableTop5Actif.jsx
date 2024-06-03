@@ -54,7 +54,11 @@ export default function TableTop5Actif() {
       renderCell: (params) => (
         <Drawer
           width="60%"
-          btnName={params.row.nomProduit}
+          btnName={
+            params.row.nomProduit.length > 18
+              ? params.row.nomProduit.slice(0, 18) + "..."
+              : params.row.nomProduit
+          }
           title="Details produit"
         >
           <DeatailProduit idProduit={params.row.idProduit} />
