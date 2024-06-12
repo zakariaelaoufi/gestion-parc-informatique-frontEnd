@@ -60,7 +60,7 @@ function useAllEntiteTravail() {
         <Drawer
           width="60%"
           btnName={params.formattedValue}
-          title="Details produit"
+          title="Details entité de travail"
         >
           <EntiteDetail idEntiteTravail={params.row.idEntiteTravail} />
         </Drawer>

@@ -19,7 +19,9 @@ export default function Attacher({ host_name }) {
   const allInventaire = useGetAllAvailableInventaire().data;
   const navigate = useNavigate();
 
-  const [dateAttachment, setDateAttachment] = useState("");
+  const [dateAttachment, setDateAttachment] = useState(
+    new Date().toISOString().split("T")[0]
+  );
   const [hostname, setHostname] = useState(host_name || "");
   const [errors, setErrors] = useState(null);
 
@@ -32,7 +34,7 @@ export default function Attacher({ host_name }) {
   };
 
   const createMutation = useCreateAttachment({
-    onSuccess: () => navigate("/dashboard/inventaire/liste-inventaire"),
+    onSuccess: () => navigate("/dashboard/parc-informatique/liste-machines"),
     onError: () => setErrors("Veuillez remplir tous les champs correctement"),
   });
 
@@ -107,6 +109,7 @@ export default function Attacher({ host_name }) {
             sx={{ mt: 2 }}
             value={dateAttachment}
             onChange={(e) => setDateAttachment(e.target.value)}
+            inputProps={{ max: new Date().toISOString().split("T")[0] }}
           />
           <Button
             type="submit"

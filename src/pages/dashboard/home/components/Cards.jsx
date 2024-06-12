@@ -12,12 +12,12 @@ export default function Cards() {
   const UpperCardInfo = useGetUpperCardInfo().data;
   const cardInfo = [
     {
-      title: "Total de machine",
+      title: "types des produits",
       icon: <BroadcastOnHomeIcon />,
       numbre: `${UpperCardInfo?.totalProduit || 0}`,
     },
     {
-      title: "Total d'invenatires",
+      title: "Total de machines",
       icon: <InventoryIcon />,
       numbre: `${UpperCardInfo?.totalInventaire || 0}`,
     },

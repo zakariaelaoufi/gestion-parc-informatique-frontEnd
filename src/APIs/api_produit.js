@@ -22,6 +22,11 @@ export const createProduit = async (formData) => {
   });
 };
 
+export const createMoreInventaireLV = async (moreData) => {
+  const url = "/produits/addmore";
+  return await axios.post(url, moreData);
+};
+
 export const updateProduit = async (formData, idProduit) => {
   const url = `/produits/${idProduit}`;
   return await axios.put(url, formData, {

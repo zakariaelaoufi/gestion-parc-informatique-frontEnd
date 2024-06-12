@@ -10,7 +10,7 @@ export default function DeleteInventaire({ data }) {
       <Modal
         btnIcon={<DeleteRoundedIcon />}
         btnColor={"error"}
-        modalTitle={"Mettre l'inventaire en réforme"}
+        modalTitle={"Mettre la machines en réforme"}
         modalActionName={"mettre en réforme"}
         btnActionColor={"error"}
         modalActionEvent={() => {
@@ -18,7 +18,7 @@ export default function DeleteInventaire({ data }) {
         }}
       >
         <Typography variant="body1" component="p" sx={{ my: 2 }}>
-          souhaitez-vous vraiment mettre cet inventaire en réforme ?
+          souhaitez-vous vraiment mettre cette machine en réforme ?
         </Typography>
       </Modal>
     </>

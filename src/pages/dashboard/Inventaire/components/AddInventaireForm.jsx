@@ -3,13 +3,21 @@ import Modal from "../../../../components/Modal/Modal";
 import useUploadDataXlsx from "../../../../hooks/utils/useUploadDataXlsx";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { Alert, Box, TextField } from "@mui/material";
-import { useAddMoreInventaire } from "../../../../hooks/api/useInventaireApi";
+import useSelectFournisseur from "../../../../hooks/inputs/useSelectFournisseur";
+import { useAddMoreInventaireLV } from "../../../../hooks/api/useProduitApi";
 
 export default function AddInventaireForm({ data = [] }) {
   const { dataExcel = [], UploadButton } = useUploadDataXlsx();
-  const [errors, setErrors] = useState(null);
+  const { selectFournisseurHTML, fournisseur } = useSelectFournisseur(-1);
 
-  const mutationAddInventaire = useAddMoreInventaire({
+  const [errors, setErrors] = useState(null);
+  const [dateLivraison, setDateLivraison] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [delai, setDelai] = useState("");
+  const [prix, setPrix] = useState("");
+
+  const mutationAddInventaire = useAddMoreInventaireLV({
     onError: () => {
       setErrors("Veuillez selectionner le fichier");
     },
@@ -22,11 +30,24 @@ export default function AddInventaireForm({ data = [] }) {
         idProduit: data.idProduit,
         quantite: dataExcel.length,
         numeroSerie: datos,
+        fournisseur: {
+          idFournisseur: fournisseur,
+        },
+        livraison: {
+          dateLivraison: dateLivraison,
+          delai: delai,
+          prix: prix,
+        },
       };
-      console.log(obj);
-      mutationAddInventaire.mutate(obj);
-      setErrors(null);
-      return true;
+      if (
+        obj.livraison.dateLivraison &&
+        obj.livraison.delai &&
+        obj.livraison.prix
+      ) {
+        mutationAddInventaire.mutate(obj);
+        setErrors(null);
+        return true;
+      }
     } else {
       setErrors("Veuillez selectionner le fichier");
       return false;
@@ -37,7 +58,7 @@ export default function AddInventaireForm({ data = [] }) {
     <>
       <Modal
         btnIcon={<AddRoundedIcon />}
-        modalTitle={" Ajouter inventaire "}
+        modalTitle={" Ajouter autres machines "}
         modalActionName={"Ajouter"}
         modalActionEvent={handleAction}
         modalFinalEvent={() => setErrors(null)}
@@ -54,6 +75,60 @@ export default function AddInventaireForm({ data = [] }) {
             disabled
             autoComplete="name"
           />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 3,
+            }}
+          >
+            <Box sx={{ mt: 2, flex: 3 }}>{selectFournisseurHTML}</Box>
+            <TextField
+              sx={{ flex: 3 }}
+              type="text"
+              fullWidth
+              id="prix"
+              label="Prix"
+              variant="outlined"
+              margin="normal"
+              required
+              value={prix}
+              onChange={(e) => setPrix(e.target.value)}
+            />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 3,
+            }}
+          >
+            <TextField
+              flex={3}
+              type="date"
+              fullWidth
+              label="Date de livraison"
+              variant="outlined"
+              margin="normal"
+              required
+              value={dateLivraison}
+              onChange={(e) => setDateLivraison(e.target.value)}
+              inputProps={{ max: new Date().toISOString().split("T")[0] }}
+            />
+            <TextField
+              flex={3}
+              type="text"
+              fullWidth
+              id="delai"
+              label="Délai"
+              variant="outlined"
+              margin="normal"
+              required
+              autoFocus
+              value={delai}
+              onChange={(e) => setDelai(e.target.value)}
+            />
+          </Box>
           <Box>
             {UploadButton(
               { mt: 2, mb: 1, p: 1, width: "100%" },

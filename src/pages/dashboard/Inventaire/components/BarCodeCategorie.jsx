@@ -11,37 +11,30 @@ import { useGetAllInventaire } from "../../../../hooks/api/useInventaireApi";
 import BarCodeINVCategorie from "./BarCodeINVCategorie";
 import Print from "../../../../components/Export/Print/Print";
 import PrintIcon from "@mui/icons-material/Print";
+import useSelectCategoriewithName from "../../../../hooks/inputs/useSelectCategoriewithName";
 
 export default function BarCodeCategorie() {
-  const [categorie, setCategorie] = useState("");
   const [typeBarcode, setTypeBarcode] = useState("CODE128");
+  const { selectCategorieHTML, Categorie } = useSelectCategoriewithName();
 
   const allInventaire = useGetAllInventaire().data;
 
   if (!allInventaire) return <></>;
 
-  const existenceCategorie = (categorie) => {
+  const existenceCategorie = (Categorie) => {
     return allInventaire?.some(
-      (inv) => inv.categorie === categorie || inv.categorie === categorie
+      (inv) => inv.categorie === Categorie || inv.categorie === Categorie
     );
   };
-  const inventaireInfo = (categorie) => {
-    return allInventaire?.filter((inv) => inv.categorie === categorie) || [];
+  const inventaireInfo = (Categorie) => {
+    return allInventaire?.filter((inv) => inv.categorie === Categorie) || [];
   };
 
   return (
     <>
       <Box>
         <Box>
-          <TextField
-            fullWidth
-            label="Choisir Categorie"
-            variant="outlined"
-            value={categorie}
-            onChange={(e) => setCategorie(e.target.value)}
-            sx={{ my: 2 }}
-            required
-          />
+          <Box sx={{ my: 2 }}>{selectCategorieHTML}</Box>
           <FormControl fullWidth>
             <InputLabel id="type_barcode">Type de codebar</InputLabel>
             <Select
@@ -59,7 +52,7 @@ export default function BarCodeCategorie() {
             </Select>
           </FormControl>
         </Box>
-        {existenceCategorie(categorie) && inventaireInfo(categorie) && (
+        {existenceCategorie(Categorie) && inventaireInfo(Categorie) && (
           <Print
             btnName="Imprimer"
             variant="outlined"
@@ -74,8 +67,8 @@ export default function BarCodeCategorie() {
               }}
             >
               <BarCodeINVCategorie
-                key={inventaireInfo(categorie)?.idInventaire}
-                data={inventaireInfo(categorie)}
+                key={inventaireInfo(Categorie)?.idInventaire}
+                data={inventaireInfo(Categorie)}
                 typeBarcode={typeBarcode}
               />
             </Box>

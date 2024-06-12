@@ -1,10 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
 import Barcode from "react-barcode";
+import useSelectCategoriewithName from "../../../../hooks/inputs/useSelectCategoriewithName";
 
 export default function BarCodeINVCategorie({
   data = [],
   typeBarcode = "CODE128",
 }) {
+  const { selectCategorieHTML, Categorie } = useSelectCategoriewithName();
   if (data.length === 0) return <></>;
   return (
     <Box>

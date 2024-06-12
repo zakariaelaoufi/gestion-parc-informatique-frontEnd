@@ -18,7 +18,7 @@ export default function TravailInfo({ data = [] }) {
   }));
 
   const columns = [
-    { field: "immatricule", headerName: "Immatricule", width: 180 },
+    { field: "immatricule", headerName: "Matricule", width: 180 },
     { field: "dateDebut", headerName: "Date Debut", width: 180 },
     { field: "dateFin", headerName: "Date Fin", width: 180 },
   ];

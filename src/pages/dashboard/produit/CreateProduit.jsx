@@ -38,9 +38,10 @@ export default function CreateProduit() {
   });
 
   const onSubmit = (data) => {
+    const { dateLivraison, delai, prix, ...produitData } = data;
     const datos = dataExcel.map((e) => e[0]);
     const obj = {
-      produit: { ...data },
+      produit: { ...produitData },
       fournisseur: {
         idFournisseur: fournisseur,
       },
@@ -49,6 +50,11 @@ export default function CreateProduit() {
       },
       categorie: {
         idCategorie: Categorie,
+      },
+      livraison: {
+        dateLivraison: dateLivraison,
+        delai: delai,
+        prix: prix,
       },
       quantite: quantite,
       numeroSerie: datos,
@@ -64,7 +70,7 @@ export default function CreateProduit() {
       if (image) {
         formData.append("file", image);
       } else {
-        formData.append("file", new Blob()); // Add an empty Blob if no image is present
+        formData.append("file", new Blob());
       }
       mutationCreate.mutate(formData);
     } else {
@@ -172,6 +178,8 @@ export default function CreateProduit() {
                 {...register("dateLivraison", {
                   required: "La date de livraison est obligatoire",
                 })}
+                value={new Date().toISOString().split("T")[0]}
+                inputProps={{ max: new Date().toISOString().split("T")[0] }}
               />
               <TextField
                 type="text"

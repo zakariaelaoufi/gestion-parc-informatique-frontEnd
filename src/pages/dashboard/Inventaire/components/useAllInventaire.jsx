@@ -12,11 +12,11 @@ export default function useAllInventaire() {
   const navigate = useNavigate();
 
   const handleClickAff = (hostname) => {
-    navigate(`/dashboard/inventaire/attibution?host_name=${hostname}`);
+    navigate(`/dashboard/parc-informatique/attibution?host_name=${hostname}`);
   };
 
   const handleClickRec = (hostname) => {
-    navigate(`/dashboard/inventaire/recuperation?host_name=${hostname}`);
+    navigate(`/dashboard/parc-informatique/recuperation?host_name=${hostname}`);
   };
 
   const rows = useGetAllInventaire().data?.map((e, index) => ({
@@ -25,7 +25,8 @@ export default function useAllInventaire() {
     nomProduit: e.nomProduit,
     etat: e.etat,
     numeroSerie: e.numeroSerie === null ? "" : e.numeroSerie,
-    affectationPlace: e.etat === "ENSTOCK" ? "" : e.affectationPlace,
+    affectationPlace:
+      e.etat === "ENSTOCK" ? "" : e.affectationPlace || e.attavhementPlace,
     affectationPersonne: e.etat === "ENSTOCK" ? "" : e.affectationPersonne,
     hostname: e.hostname,
     idAffectation: e.lastIdAffectation,
@@ -42,7 +43,7 @@ export default function useAllInventaire() {
           <Drawer
             width="60%"
             btnName={params.formattedValue}
-            title="Details produit"
+            title="Details machine"
           >
             <DetailInventaire idInventaire={params.row.idInventaire} />
           </Drawer>
@@ -51,10 +52,10 @@ export default function useAllInventaire() {
     },
     { field: "numeroSerie", headerName: "Numero de serie", flex: 0.9 },
     { field: "etat", headerName: "Etat", flex: 0.6 },
-    { field: "affectationPlace", headerName: "Place", width: 180, flex: 1.3 },
+    { field: "affectationPlace", headerName: "Entité", width: 180, flex: 1.3 },
     {
       field: "affectationPersonne",
-      headerName: "Avec",
+      headerName: "Employé",
       flex: 1.1,
     },
     {

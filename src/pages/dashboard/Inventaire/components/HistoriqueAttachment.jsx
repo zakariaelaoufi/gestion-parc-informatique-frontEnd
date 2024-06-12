@@ -20,7 +20,7 @@ export default function HistoriqueAttachment({ data = [] }) {
 
   // Define the columns
   const columns = [
-    { field: "place", headerName: "Place", width: 180 },
+    { field: "place", headerName: "Entité", width: 180 },
     { field: "dateAttachment", headerName: "Date Attachment", width: 180 },
     { field: "dateRetoure", headerName: "Date Retoure", width: 180 },
   ];

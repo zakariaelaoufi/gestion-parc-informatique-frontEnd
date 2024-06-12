@@ -5,6 +5,8 @@ import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
 export default function Modal(props) {
   const {
     btnName,
+    nom,
+    noAction = false,
     btnVar = null,
     btnIcon = null,
     btnEvent = null,
@@ -64,7 +66,12 @@ export default function Modal(props) {
           {btnIcon}
         </IconButton>
       ) : (
-        <></>
+        <Typography
+          sx={{ cursor: "pointer", color: "primary.main" }}
+          onClick={handleOpen}
+        >
+          {nom}
+        </Typography>
       )}
 
       <ModalContainer state={open} handleClose={handleClose}>
@@ -78,14 +85,16 @@ export default function Modal(props) {
             <Button variant="text" onClick={handleCancel}>
               {modalCancelName || "Annuler"}
             </Button>
-            <Button
-              variant="contained"
-              color={btnActionColor || "secondary"}
-              onClick={handleAction}
-              type={actionType}
-            >
-              {modalActionName || btnName || "Action"}
-            </Button>
+            {!noAction && (
+              <Button
+                variant="contained"
+                color={btnActionColor || "secondary"}
+                onClick={handleAction}
+                type={actionType}
+              >
+                {modalActionName || btnName || "Action"}
+              </Button>
+            )}
           </Box>
         </Box>
       </ModalContainer>

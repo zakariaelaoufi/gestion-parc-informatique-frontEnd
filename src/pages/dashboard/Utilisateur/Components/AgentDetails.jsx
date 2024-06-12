@@ -27,7 +27,7 @@ export default function AgentDetails({ idUtilisateur }) {
         <Grid container spacing={1}>
           <Grid item>
             <BlockInfo
-              title={"Agent info"}
+              title={"Employé info"}
               infoList={[
                 `Immatricule : ${AgentByID?.immatricule}`,
                 `Nom : ${AgentByID?.nomUtilisateur}`,

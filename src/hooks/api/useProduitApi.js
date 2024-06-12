@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+  createMoreInventaireLV,
   createProduit,
   deleteProduit,
   downloadImage,
@@ -43,6 +44,22 @@ export const useCreateProduit = ({ onSuccess, onError } = {}) => {
   return useMutation({
     mutationFn: createProduit,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["allProduit"] });
+      onSuccess && onSuccess();
+    },
+    onError: () => {
+      onError && onError();
+    },
+  });
+};
+
+export const useAddMoreInventaireLV = ({ onSuccess, onError } = {}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: createMoreInventaireLV,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["allInventaire"] });
       queryClient.invalidateQueries({ queryKey: ["allProduit"] });
       onSuccess && onSuccess();
     },

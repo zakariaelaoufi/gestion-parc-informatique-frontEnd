@@ -10,11 +10,8 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 
 export default function UpdateProduit({ ProduitData = [] }) {
   const [error, setErrors] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(ProduitData?.imageURL);
 
-  const { selectFournisseurHTML, fournisseur } = useSelectFournisseur({
-    idFournisseurUpdate: ProduitData?.fournisseur?.idFournisseur,
-  });
   const { selectMarqueHTML, Marque } = useSelectMarque({
     idMarqueUpdate: ProduitData?.marqueID,
   });
@@ -30,9 +27,6 @@ export default function UpdateProduit({ ProduitData = [] }) {
     defaultValues: {
       nomProduit: ProduitData?.nomProduit,
       description: ProduitData?.description,
-      prix: ProduitData?.prix,
-      delai: ProduitData?.delai || "",
-      dateLivraison: ProduitData?.dateLivraison || "",
     },
   });
 
@@ -46,9 +40,6 @@ export default function UpdateProduit({ ProduitData = [] }) {
   const onSubmit = (data) => {
     const obj = {
       produit: { ...data, imageURL: ProduitData?.imageURL },
-      fournisseur: {
-        idFournisseur: fournisseur,
-      },
       marque: {
         idMarque: Marque,
       },
@@ -56,8 +47,7 @@ export default function UpdateProduit({ ProduitData = [] }) {
         idCategorie: Categorie,
       },
     };
-    if (fournisseur && Marque && Categorie) {
-      console.log(obj, "obj");
+    if (Marque && Categorie) {
       const formData = new FormData();
       formData.append("data", JSON.stringify(obj));
       if (image) {
@@ -89,21 +79,6 @@ export default function UpdateProduit({ ProduitData = [] }) {
               {errors.nomProduit.message}
             </Alert>
           )}
-          {errors.prix && (
-            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-              {errors.prix.message}
-            </Alert>
-          )}
-          {errors.dateLivraison && (
-            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-              {errors.dateLivraison.message}
-            </Alert>
-          )}
-          {errors.delai && (
-            <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
-              {errors.delai.message}
-            </Alert>
-          )}
           {errors.description && (
             <Alert severity="error" sx={{ mt: 1, mb: 1 }}>
               {errors.description.message}
@@ -128,74 +103,29 @@ export default function UpdateProduit({ ProduitData = [] }) {
                 {error}
               </Alert>
             )}
+
+            <TextField
+              type="text"
+              fullWidth
+              label="Nom de machine"
+              variant="outlined"
+              {...register("nomProduit", {
+                required: "Le nom est obligatoire",
+              })}
+            />
             <Box
               sx={{
                 display: "flex",
-                alignItems: "center",
+                justifyContent: "space-between",
                 gap: 3,
               }}
             >
-              <TextField
-                type="text"
-                fullWidth
-                label="Nom de machine"
-                variant="outlined"
-                {...register("nomProduit", {
-                  required: "Le nom est obligatoire",
-                })}
-              />
-              <Box width={1}>{selectCategorieHTML}</Box>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 3, mt: 2 }}>
-              <Box width={1}>{selectMarqueHTML}</Box>
-              <TextField
-                type="text"
-                fullWidth
-                label="Prix"
-                variant="outlined"
-                {...register("prix", {
-                  required: "Le prix est obligatoire",
-                })}
-              />
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 3, mt: 2 }}>
-              <TextField
-                type="text"
-                fullWidth
-                label="Quantité"
-                variant="outlined"
-                value={ProduitData?.totalPiece}
-                disabled
-              />
-              <Box width={1}>{selectFournisseurHTML}</Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flex: 3,
-                alignItems: "center",
-                gap: 3,
-                mt: 2,
-              }}
-            >
-              <TextField
-                fullWidth
-                label="Date Livraison"
-                variant="outlined"
-                type="date"
-                {...register("dateLivraison", {
-                  required: "La date de livraison est obligatoire",
-                })}
-              />
-              <TextField
-                type="text"
-                fullWidth
-                label="Délai de garantie"
-                variant="outlined"
-                {...register("delai", {
-                  required: "Le délai de garantie est obligatoire",
-                })}
-              />
+              <Box sx={{ mt: 2 }} width={1}>
+                {selectCategorieHTML}
+              </Box>
+              <Box sx={{ mt: 2 }} width={1}>
+                <Box width={1}>{selectMarqueHTML}</Box>
+              </Box>
             </Box>
             <Box sx={{ my: 2 }}>
               <TextField

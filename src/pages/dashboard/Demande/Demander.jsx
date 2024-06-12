@@ -19,13 +19,15 @@ export default function Demander({ host_name }) {
 
   const [agent, setAgent] = useState("");
   const [hostname, setHostname] = useState(host_name || "");
-  const [dateAffection, setDateAffectation] = useState("");
+  const [dateAffection, setDateAffectation] = useState(
+    new Date().toISOString().split("T")[0]
+  );
   const [errors, setErrors] = useState("");
 
   const navigate = useNavigate();
   const mutationCreate = useCreateAffectation({
     onSuccess: () => {
-      navigate("/dashboard/inventaire/liste-inventaire");
+      navigate("/dashboard/parc-informatique/liste-machines");
     },
     onError: () => {
       setErrors("vérifiez vos informations");
@@ -125,7 +127,9 @@ export default function Demander({ host_name }) {
             label="Date d'affectation"
             variant="outlined"
             sx={{ mt: 2 }}
+            value={dateAffection}
             onChange={(e) => setDateAffectation(e.target.value)}
+            inputProps={{ max: new Date().toISOString().split("T")[0] }}
           />
           <Button
             type="submit"

@@ -84,15 +84,15 @@ export const MenuData = [
     ],
   },
   {
-    name: "Inventaire",
+    name: "Parc informatique",
     icon: <InventoryIcon />,
-    path: "inventaire",
+    path: "parc-informatique",
     component: <h1>Inventaire</h1>,
     permissions: [user_role.BOT],
     children: [
       {
-        name: "Liste inventaire",
-        path: "liste-inventaire",
+        name: "Liste des machines",
+        path: "liste-machines",
         component: <ListInventairePage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
@@ -108,18 +108,6 @@ export const MenuData = [
         component: <RecupererPage />,
         permissions: [user_role.BO, user_role.DEPARTMENT],
       },
-      // {
-      //   name: "affectation machine",
-      //   path: "affectation",
-      //   component: <DemandePage />,
-      //   permissions: [user_role.BO, user_role.DEPARTMENT],
-      // },
-      // {
-      //   name: "Attacher machine",
-      //   path: "Attacher-machine",
-      //   component: <AttacherPage />,
-      //   permissions: [user_role.BO, user_role.DEPARTMENT],
-      // },
       {
         name: "Imprimer Barcode",
         path: "imprimer-barcode",

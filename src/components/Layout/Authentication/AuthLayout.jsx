@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 // import loginImg from "/src/assets/auth_bg_img_1.jpg";
-import assetIMG from "/src/assets/asset_image.jpeg";
 import auth_bg_img_3 from "/src/assets/auth_bg_img_3.jpg";
 import { Box } from "@mui/system";
 import { motion } from "framer-motion";

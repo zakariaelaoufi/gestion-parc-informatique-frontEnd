@@ -48,7 +48,7 @@ function UpdateUtilisateur({ data }) {
     <>
       <Modal
         btnIcon={<EditRoundedIcon />}
-        modalTitle={" Update un utilisateur "}
+        modalTitle={"Modifier un employé"}
         modalActionName={"Update"}
         modalActionEvent={handleAction}
         modalFinalEvent={() => setErrors(null)}

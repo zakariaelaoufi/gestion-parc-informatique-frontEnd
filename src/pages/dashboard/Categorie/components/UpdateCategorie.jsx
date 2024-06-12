@@ -39,8 +39,8 @@ export default function UpdateCategorie({ data }) {
   return (
     <Modal
       btnIcon={<EditRoundedIcon />}
-      modalTitle="Update une categorie"
-      modalActionName="Créer"
+      modalTitle="Modifier une categorie"
+      modalActionName="Modifier"
       modalActionEvent={handleAction}
       modalFinalEvent={() => setErrors(null)}
     >

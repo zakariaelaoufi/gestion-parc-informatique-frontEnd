@@ -22,7 +22,7 @@ export default function DetailInventaire({ idInventaire }) {
         <Grid container spacing={1}>
           <Grid item>
             <BlockInfo
-              title={"Inventaire info"}
+              title={"machines info"}
               infoList={[
                 `Nom Produit : ${inventaireByID?.nomProduit}`,
                 `Hostname : ${inventaireByID?.hostname}`,

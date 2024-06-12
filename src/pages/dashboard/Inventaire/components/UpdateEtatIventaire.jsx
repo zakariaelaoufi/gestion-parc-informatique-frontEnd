@@ -42,7 +42,7 @@ export default function UpdateEtatIventaire({ data }) {
     <>
       <Modal
         btnIcon={<EditRoundedIcon />}
-        modalTitle={" Update un utilisateur "}
+        modalTitle={"Modifier état de la machine"}
         modalActionName={"Update"}
         modalActionEvent={handleAction}
         modalFinalEvent={() => setErrors(null)}

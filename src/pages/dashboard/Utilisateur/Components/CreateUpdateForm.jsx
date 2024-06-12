@@ -177,6 +177,7 @@ function CreateUpdateForm({
                 autoComplete="name"
                 type="date"
                 value={dateDebut}
+                inputProps={{ max: new Date().toISOString().split("T")[0] }}
                 onChange={(e) => setDateDebut(e.target.value)}
               />
             </>

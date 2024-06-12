@@ -9,13 +9,10 @@ export default function useAllProduit() {
     id: index,
     idProduit: e.idProduit,
     nomProduit: e.nomProduit,
-    prix: e.prix + " DH",
-    delai: e.delai + " an/ans",
     libelle: e?.libelle,
     enStockNB: e.nbEtatInv?.ENSTOCK,
     actif: e.nbEtatInv?.ACTIF,
     totalPiece: e.totalPiece,
-    dateExperation: e.dateExperation,
     imageURL: e.imageURL,
   }));
 
@@ -35,7 +32,6 @@ export default function useAllProduit() {
             objectFit: "contain",
             borderRadius: "5px",
             padding: "2px",
-            paddingTop: "-2px",
             cursor: "pointer",
           }}
         />
@@ -47,32 +43,24 @@ export default function useAllProduit() {
       flex: 2,
       width: 200,
       renderCell: (params) => (
-        <Drawer
-          width="60%"
-          btnName={params.formattedValue}
-          title="Details produit"
-        >
+        <Drawer width="60%" btnName={params.value} title="Détails produit">
           <DeatailProduit idProduit={params.row.idProduit} />
         </Drawer>
       ),
     },
     {
       field: "totalPiece",
-      headerName: "Nb Piece",
+      headerName: "Nb Pièce",
+      headerAlign: "center",
       flex: 1,
       type: "number",
       width: 100,
       align: "center",
     },
     {
-      field: "prix",
-      headerName: "Prix",
-      flex: 1,
-      width: 100,
-    },
-    {
       field: "enStockNB",
       headerName: "En Stock",
+      headerAlign: "center",
       flex: 1,
       type: "number",
       width: 100,
@@ -80,25 +68,18 @@ export default function useAllProduit() {
     },
     {
       field: "actif",
-      headerName: "Actif",
-      flex: 0.8,
+      headerName: "Affectée",
+      headerAlign: "center",
+      flex: 1,
       type: "number",
       width: 100,
       align: "center",
     },
     {
       field: "libelle",
-      headerName: "Categorie",
+      headerName: "Catégorie",
       flex: 1,
       width: 100,
-    },
-    {
-      field: "Garentie",
-      headerName: "Garentie",
-      flex: 1,
-      width: 100,
-      renderCell: (params) =>
-        params.row.dateExperation > new Date() ? "Expire" : "Valide",
     },
   ];
 

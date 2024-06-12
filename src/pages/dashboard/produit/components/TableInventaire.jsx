@@ -8,15 +8,16 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
 
 export default function TableInventaire({ data = [] }) {
   if (!data || data.length < 1) return <></>;
+  console.log("data", data);
   const rows = data?.map((e, index) => ({
     id: index,
     numeroSerie: e?.numeroSerie,
     hostname: e?.hostname,
     etat: e?.etat,
+    ice: e?.ice,
     place:
       e?.affectationPlace === null
         ? e?.attachers[0]?.place || "Aucun"
@@ -27,9 +28,10 @@ export default function TableInventaire({ data = [] }) {
   const columns = [
     { field: "hostname", headerName: "Hostname", width: 180 },
     { field: "numeroSerie", headerName: "Numero de serie", width: 180 },
+    { field: "ice", headerName: "ICE", width: 180 },
     { field: "etat", headerName: "Etat", width: 180 },
-    { field: "place", headerName: "Place", flex: 1.5 },
-    { field: "Avec", headerName: "Avec", width: 180 },
+    { field: "place", headerName: "Entité", flex: 1.5 },
+    { field: "Avec", headerName: "Employé", width: 180 },
   ];
 
   return (

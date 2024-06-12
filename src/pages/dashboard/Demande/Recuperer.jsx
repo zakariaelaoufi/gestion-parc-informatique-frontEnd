@@ -17,7 +17,9 @@ export default function Recuperer() {
   const initialHostName = searchParams.get("host_name") || "";
 
   const [hostname, setHostname] = useState(initialHostName);
-  const [dateRetour, setDateRetour] = useState("");
+  const [dateRetour, setDateRetour] = useState(
+    new Date().toISOString().split("T")[0]
+  );
   const [errors, setErrors] = useState(null);
 
   const navigate = useNavigate();
@@ -36,13 +38,13 @@ export default function Recuperer() {
   );
 
   const mutationCreateAffectation = useUpdateAffectation({
-    onSuccess: () => navigate("/dashboard/inventaire/liste-inventaire"),
+    onSuccess: () => navigate("/dashboard/parc-informatique/liste-machines"),
     onError: () => setErrors("vérifiez vos informations"),
     idAffectation: currentInventaire?.idAffectation,
   });
 
   const mutationCreateAttachment = useUpdateAttachment({
-    onSuccess: () => navigate("/dashboard/inventaire/liste-inventaire"),
+    onSuccess: () => navigate("/dashboard/parc-informatique/liste-machines"),
     onError: () => setErrors("vérifiez vos informations"),
     idAttachment: currentInventaire?.idAttachment,
   });
@@ -171,6 +173,8 @@ export default function Recuperer() {
               label="Date de retour"
               variant="outlined"
               sx={{ mt: 2 }}
+              inputProps={{ max: new Date().toISOString().split("T")[0] }}
+              value={dateRetour}
               onChange={(e) => setDateRetour(e.target.value)}
             />
             <Button

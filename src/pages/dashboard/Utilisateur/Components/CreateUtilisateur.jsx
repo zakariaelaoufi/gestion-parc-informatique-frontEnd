@@ -56,10 +56,10 @@ function CreateUtilisateur() {
   return (
     <>
       <Modal
-        btnName={" Créer un utilisateur"}
+        btnName={" Ajouter un employé"}
         btnIcon={<AddRoundedIcon />}
-        modalTitle={" Créer un utilisateur "}
-        modalActionName={"Créer"}
+        modalTitle={" Ajouter un employé "}
+        modalActionName={"Ajouter"}
         modalActionEvent={handleAction}
         modalFinalEvent={() => setErrors(null)}
       >

@@ -1,8 +1,5 @@
 import { Box, Paper, Typography } from "@mui/material";
 import ListCardsSection from "./components/ListCardsSection";
-import Chart from "./components/Chart";
-import useAllMarche from "../marche/components/useAllMarche";
-import TableData from "../../../components/Table/TableData";
 import ChartBar from "./components/ChartBar";
 import EtatPie from "./components/EtatPie";
 import PolarChart from "./components/PolarChart";

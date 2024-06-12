@@ -38,7 +38,7 @@ export default function MachineAffecter({ data = [] }) {
     { field: "nomMachine", headerName: "Nom de la Machine", width: 180 },
     { field: "dateAffectation", headerName: "Date d'Attribution", width: 180 },
     { field: "dateRetoure", headerName: "Date de Retoure", width: 180 },
-    { field: "place", headerName: "Place", width: 180 },
+    { field: "place", headerName: "Entité", width: 180 },
   ];
 
   return (

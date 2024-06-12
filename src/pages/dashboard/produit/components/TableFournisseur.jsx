@@ -7,17 +7,37 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import Drawer from "../../../../components/Drawer/Drawer";
+import DetailFournisseurModal from "./DetailFournisseurModal";
 
 export default function TableFournisseur({ data = [] }) {
   if (!data || data.length < 1) return <></>;
 
+  const rows = data?.livraisonList?.map((e, index) => ({
+    id: index,
+    ice: e?.fournisseur?.ice,
+    nomFournisseur: e?.fournisseur?.nomFournisseur,
+    prix: e?.prix + " DH",
+    dateLivraison: e?.dateLivraison,
+    dateExperation: e?.dateExperation,
+    fournisseur: {
+      ...e?.fournisseur,
+    },
+  }));
+
   const columns = [
     { field: "ice", headerName: "ICE", width: 180 },
-    { field: "nomFournisseur", headerName: "Nom Fournisseur", width: 180 },
-    { field: "adresse", headerName: "Adresse", width: 180 },
-    { field: "tel", headerName: "Telephone", width: 180 },
-    { field: "fax", headerName: "Fax", width: 180 },
-    { field: "email", headerName: "Email", width: 180 },
+    {
+      field: "nomFournisseur",
+      headerName: "Nom Fournisseur",
+      width: 180,
+      renderCell: (params) => (
+        <DetailFournisseurModal data={params.row.fournisseur} />
+      ),
+    },
+    { field: "prix", headerName: "Prix", width: 180 },
+    { field: "dateLivraison", headerName: "Date Livraison", width: 180 },
+    { field: "dateExperation", headerName: "Date Experation", width: 180 },
   ];
 
   return (
@@ -37,24 +57,21 @@ export default function TableFournisseur({ data = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableCell scope="row" align="center">
-            {data?.ice}
-          </TableCell>
-          <TableCell scope="row" align="center">
-            {data?.nomFournisseur}
-          </TableCell>
-          <TableCell scope="row" align="center">
-            {data?.adresse}
-          </TableCell>
-          <TableCell scope="row" align="center">
-            {data?.tel}
-          </TableCell>
-          <TableCell scope="row" align="center">
-            {data?.fax}
-          </TableCell>
-          <TableCell scope="row" align="center">
-            {data?.email}
-          </TableCell>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.field}
+                  align="center"
+                  style={{ minWidth: 140 }}
+                >
+                  {column.renderCell
+                    ? column.renderCell({ value: row[column.field], row })
+                    : row[column.field]}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

@@ -16,8 +16,8 @@ export default function TableHistorique({ data = [] }) {
     ...e,
   }));
   const columns = [
-    { field: "immatricule", headerName: "Immatricule", width: 180 },
-    { field: "place", headerName: "Place", width: 180 },
+    { field: "immatricule", headerName: "Matricule", width: 180 },
+    { field: "place", headerName: "Entité", width: 180 },
     { field: "dateAffectation", headerName: "Date Affectation", width: 180 },
     { field: "dateRetoure", headerName: "Date Retoure", width: 180 },
   ];

@@ -19,7 +19,7 @@ export default function InventaireList() {
             px: 1.5,
           }}
         >
-          Liste des inventaires
+          Liste des machines
         </Typography>
         <Box
           sx={{

@@ -56,10 +56,7 @@ export default function DeatailProduit({ idProduit }) {
               title={"Produit info"}
               infoList={[
                 `Nom produit : ${produitByID?.nomProduit}`,
-                `Prix : ${parseFloat(produitByID?.prix).toFixed(2)} DH`,
                 `Quantite : ${produitByID?.totalPiece}`,
-                `Date livraison : ${produitByID?.dateLivraison}`,
-                `Date expiration de garantie  : ${produitByID?.dateExperation}`,
                 `Categorie : ${produitByID?.libelle}`,
                 `Marque : ${produitByID?.nomMarque}`,
               ]}
@@ -93,12 +90,12 @@ export default function DeatailProduit({ idProduit }) {
         <TabRender
           tabList={[
             {
-              title: "details des inventaires",
+              title: "details des machines",
               component: <TableInventaire data={produitByID?.inventaireList} />,
             },
             {
               title: "details de fournisseur",
-              component: <TableFournisseur data={produitByID?.fournisseur} />,
+              component: <TableFournisseur data={produitByID} />,
             },
           ]}
         />

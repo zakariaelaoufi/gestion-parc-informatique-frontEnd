@@ -24,14 +24,14 @@ function useAllUtilisateur() {
   const columns = [
     {
       field: "immatricule",
-      headerName: "Immatricule",
+      headerName: "Matricule",
       width: 180,
       renderCell: (params) => {
         return (
           <Drawer
             width="60%"
             btnName={params.formattedValue}
-            title="Details Utilisateur"
+            title="Details Employé"
           >
             <AgentDetails idUtilisateur={params.row.idUtilisateur} />
           </Drawer>
@@ -49,7 +49,7 @@ function useAllUtilisateur() {
     },
     {
       field: "nomTravail",
-      headerName: "Travaille dans",
+      headerName: "Entité",
       width: 180,
       flex: 2,
     },
