@@ -5,7 +5,7 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 ### Technology Stack
 
 - **Backend**: Utilized **J2EE** technology with the **Spring Boot** framework, providing a robust and scalable architecture for the application.
-- **Database**: Chose MYsql for reliable and widely used database management.
+- **Database**: Choose Mysql for reliable and widely used database management.
 - **Frontend**: Employed a combination of **React**, **Material UI**, **React Query**, and **Redux** to create a user-friendly and intuitive interface, ensuring a modern and enjoyable user experience.
 
 ### Key Features
@@ -47,3 +47,5 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 ![Barcode Generation](https://github.com/user-attachments/assets/77010ff6-8cda-4edf-9cc3-73868a207b55)
 
 ![Barcode Example](https://github.com/user-attachments/assets/8ff5ce51-f124-40da-91ba-a3047c1717e6)
+
+## Demo that showcases all features of the application [here](https://youtu.be/AY13gHDwWwg?si=MbX1d3bQD3DkpbVm)
