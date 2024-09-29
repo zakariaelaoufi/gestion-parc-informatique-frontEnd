@@ -20,4 +20,6 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 
 Backend link [here](https://github.com/zakariaelaoufi/gestion-parc-informatique-backEnd).
 
-[Watch the video demonstration here](https://youtu.be/AY13gHDwWwg?si=6xM5EGrr9IxfX4hj)
+Here is the video demonstration:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AY13gHDwWwg?si=6xM5EGrr9IxfX4hj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
