@@ -20,6 +20,30 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 
 Backend link [here](https://github.com/zakariaelaoufi/gestion-parc-informatique-backEnd).
 
-Here is the video demonstration:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AY13gHDwWwg?si=6xM5EGrr9IxfX4hj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Asset Management Web Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        iframe {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>IT Asset Management Web Application</h1>
+    <p>Watch the demo video below:</p>
+    
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AY13gHDwWwg?si=6xM5EGrr9IxfX4hj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</body>
+</html>
