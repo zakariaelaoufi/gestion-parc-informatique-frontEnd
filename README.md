@@ -5,7 +5,7 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 ### Technology Stack
 
 - **Backend**: Utilized **J2EE** technology with the **Spring Boot** framework, providing a robust and scalable architecture for the application.
-- **Database**: Chose SQL for reliable and widely used database management.
+- **Database**: Chose MYsql for reliable and widely used database management.
 - **Frontend**: Employed a combination of **React**, **Material UI**, **React Query**, and **Redux** to create a user-friendly and intuitive interface, ensuring a modern and enjoyable user experience.
 
 ### Key Features
@@ -18,10 +18,32 @@ In the context of my End of Studies Project, I developed an **IT Asset Managemen
 6. **Machine Tracking**: Records and updates information on the status, location, and usage of machines.
 7. **Reports**: Generates reports on the status of machines, assigned users, and more.
 
-Backend link [here](https://github.com/zakariaelaoufi/gestion-parc-informatique-backEnd).
+### Backend link [here](https://github.com/zakariaelaoufi/gestion-parc-informatique-backEnd).
 
-### Video Demonstration
+## Here are some snapshots of the ITAM application:
 
-Here is the video demonstration:
+### Login Page
+![Login Page](https://github.com/user-attachments/assets/9342dacc-1c11-4921-98ca-577a4cf1034c)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AY13gHDwWwg?si=6xM5EGrr9IxfX4hj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+### Dashboard
+![Dashboard](https://github.com/user-attachments/assets/5e8bdc40-1cde-41f5-961e-980986a815b5)
+
+### Product Page
+![Product Page](https://github.com/user-attachments/assets/2d42dfd3-1b4e-4a07-864c-de8e51d24840)
+
+### Product Details Drawer
+![Product Details Drawer](https://github.com/user-attachments/assets/f61259c0-ff9f-4654-b115-45ed84ea3eb4)
+
+### Edit Product Information Page
+![Edit Product Information](https://github.com/user-attachments/assets/412b8582-7f6e-423d-9b91-b63a7a2fef0e)
+
+### Add New Product Page
+![Add New Product](https://github.com/user-attachments/assets/67294786-a56a-4cf1-851c-c30d3fe1000d)
+
+### Mandatory Field Error
+![Mandatory Field Error](https://github.com/user-attachments/assets/369428bd-36d4-4b9e-af3c-93fdb5427ea3)
+
+### Barcode Generation Page
+![Barcode Generation](https://github.com/user-attachments/assets/77010ff6-8cda-4edf-9cc3-73868a207b55)
+
+![Barcode Example](https://github.com/user-attachments/assets/8ff5ce51-f124-40da-91ba-a3047c1717e6)
